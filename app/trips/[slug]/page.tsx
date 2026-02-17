@@ -47,11 +47,19 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
             className="absolute inset-0"
             style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.55) 100%)' }}
           />
-          <div className="relative z-10 text-center px-6">
+          <div
+            className="relative z-10 text-center px-8 py-10 rounded-2xl max-w-3xl mx-6"
+            style={{
+              background: 'rgba(0, 0, 0, 0.45)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+            }}
+          >
             <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-6xl text-white mb-4">
               {trip.title}
             </h1>
-            <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto">
+            <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">
               {trip.description}
             </p>
             <div className="mt-6 flex items-center justify-center gap-6">
