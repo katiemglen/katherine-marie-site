@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { parseWordPressContent, type GalleryBlock } from '@/lib/parseContent';
 import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
 import { fadeUp, fadeInScale, staggerContainer, defaultTransition, textTransition } from '@/lib/animations';
+import { buildStorySlides } from '@/lib/storyContent';
+import StoryMode from './StoryMode';
 import HeroSection from './HeroSection';
 import VideoSection from './VideoSection';
 import NextStoryTeaser from './NextStoryTeaser';
@@ -53,8 +55,14 @@ function GalleryRenderer({ gallery, onImageClick }: { gallery: GalleryBlock; onI
 
 export default function MagazinePost({ post, next, prev }: Props) {
   const [lightbox, setLightbox] = useState<{ images: string[]; index: number } | null>(null);
+  const [storyOpen, setStoryOpen] = useState(false);
 
   const parsed = useMemo(() => parseWordPressContent(post.content, post.images), [post.content, post.images]);
+
+  const storySlides = useMemo(
+    () => buildStorySlides(post.title, post.images, post.content),
+    [post.title, post.images, post.content]
+  );
 
   const openLightbox = useCallback((images: string[], index: number) => {
     setLightbox({ images, index });
@@ -101,6 +109,27 @@ export default function MagazinePost({ post, next, prev }: Props) {
               <img src={wpImage(src, IMG_SIZES.thumbnail)} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
             </motion.div>
           ))}
+        </motion.div>
+      )}
+
+      {storySlides.length > 2 && (
+        <motion.div
+          className="flex lg:hidden justify-center py-4"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.4 }}
+        >
+          <button
+            onClick={() => setStoryOpen(true)}
+            className="px-6 py-2.5 rounded-full text-sm font-medium border"
+            style={{
+              background: 'var(--card-bg)',
+              color: 'var(--foreground)',
+              borderColor: 'var(--border, rgba(128,128,128,0.2))',
+            }}
+          >
+            📖 Read as Story
+          </button>
         </motion.div>
       )}
 
@@ -161,6 +190,14 @@ export default function MagazinePost({ post, next, prev }: Props) {
       <div className="px-4 md:px-8 lg:px-16 pb-16">
         <NextStoryTeaser next={next} prev={prev} />
       </div>
+
+      {storyOpen && (
+        <StoryMode
+          slides={storySlides}
+          title={post.title}
+          onClose={() => setStoryOpen(false)}
+        />
+      )}
 
       {lightbox && (
         <Lightbox
