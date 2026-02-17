@@ -21,7 +21,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
   const posts = getPostsByCategory(trip.category);
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="max-w-5xl mx-auto px-6 pt-[220px] md:pt-[260px] pb-16">
       <AnimatedHero>
         <AnimatedHeading className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl mb-4 text-left" >
           <span style={{ color: 'var(--heading-color)' }}>{trip.title}</span>

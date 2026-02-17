@@ -1,67 +1,85 @@
 import { getAllPosts, TRIPS } from "@/lib/posts";
-import Link from "next/link";
-import PostCard from "@/components/PostCard";
-import { AnimatedHero, AnimatedHeading, AnimatedText, AnimatedH2, StaggerGrid, AnimatedCard } from "@/components/AnimatedLanding";
+import { wpImage, IMG_SIZES } from "@/lib/optimizeImage";
+import HomeHero from "@/components/HomeHero";
+import TripSplitScreen from "@/components/TripSplitScreen";
+import FeaturedStory from "@/components/FeaturedStory";
+import PhotoMosaic from "@/components/PhotoMosaic";
+import RecentStrip from "@/components/RecentStrip";
+import ClosingCTA from "@/components/ClosingCTA";
 
 export default function Home() {
   const posts = getAllPosts();
-  const recent = [...posts].reverse().slice(0, 6);
+
+  // Hero images — local files confirmed
+  const heroImages = [
+    '/images/peggys-cove/resized_20190509_062921.jpg',
+    '/images/blue-ridge/20190427_090459.jpg',
+    '/images/florida-keys-day-trip/20190415_173245.jpg',
+    '/images/sunny-manhattan/20190502_114324.jpg',
+    '/images/sea-life-beach-towns-sunsets/20190417_094848.jpg',
+  ];
+
+  // Trip panels
+  const wcPosts = posts.filter((p) => p.categories.includes('2016 West Coast Road Trip'));
+  const ecPosts = posts.filter((p) => p.categories.includes('2019 East Coast Road Trip'));
+  const tripPanels = [
+    {
+      slug: 'west-coast-2016',
+      title: '2016 West Coast Road Trip',
+      coverImage: wpImage(TRIPS[0].coverImage, IMG_SIZES.hero),
+      postCount: wcPosts.length,
+      days: 28,
+    },
+    {
+      slug: 'east-coast-2019',
+      title: '2019 East Coast Road Trip',
+      coverImage: wpImage(TRIPS[1].coverImage, IMG_SIZES.hero),
+      postCount: ecPosts.length,
+      days: 30,
+    },
+  ];
+
+  // Featured story — Easter Sunday
+  const easterPost = posts.find((p) => p.slug === 'easter-sunday');
+
+  // Photo mosaic — pick every ~5th post for diversity
+  const mosaicData = posts
+    .filter((_, i) => i % 5 === 0)
+    .slice(0, 16)
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      image: wpImage(p.images[0], IMG_SIZES.gallery),
+    }));
+
+  // Recent posts — last 8
+  const recent = [...posts].reverse().slice(0, 8).map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    date: p.date,
+    image: wpImage(p.images[0], IMG_SIZES.gallery),
+  }));
+
+  // Closing CTA — open road shot from West Coast
+  const closingImage = '/images/1032/20170102_081704.jpg';
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative flex items-center justify-center min-h-[70vh] px-6">
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, color-mix(in srgb, var(--background) 20%, black), var(--background))' }} />
-        <AnimatedHero>
-          <AnimatedHeading className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl leading-tight" >
-            <span style={{ color: 'var(--heading-color)' }}>Adventure</span><br /><span style={{ color: 'var(--accent)' }}>Memories</span>
-          </AnimatedHeading>
-          <AnimatedText className="mt-6 text-lg max-w-xl mx-auto" style={{ color: 'var(--muted-text)' }}>
-            Stories from the open road — two people, a diesel Jetta, and thousands of miles of discovery.
-          </AnimatedText>
-        </AnimatedHero>
-      </section>
-
-      {/* Trip Series */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
-        <AnimatedH2 className="font-[family-name:var(--font-playfair)] text-3xl mb-8" style={{ color: 'var(--heading-color)' }}>
-          Trip Series
-        </AnimatedH2>
-        <StaggerGrid className="grid md:grid-cols-2 gap-6">
-          {TRIPS.map((trip) => (
-            <AnimatedCard key={trip.slug}>
-              <Link href={`/trips/${trip.slug}`} className="block glass rounded-2xl overflow-hidden group transition" style={{ borderColor: 'var(--card-border)' }}>
-                <div className="h-56 overflow-hidden">
-                  <img src={trip.coverImage} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-[family-name:var(--font-playfair)] text-xl group-hover:text-[var(--accent-secondary)] transition" style={{ color: 'var(--accent)' }}>{trip.title}</h3>
-                  <p className="text-sm mt-2" style={{ color: 'var(--muted-text)' }}>{trip.description}</p>
-                </div>
-              </Link>
-            </AnimatedCard>
-          ))}
-        </StaggerGrid>
-      </section>
-
-      {/* Recent Posts */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
-        <AnimatedH2 className="font-[family-name:var(--font-playfair)] text-3xl mb-8" style={{ color: 'var(--heading-color)' }}>
-          Recent Posts
-        </AnimatedH2>
-        <StaggerGrid className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {recent.map((post) => (
-            <PostCard
-              key={post.slug}
-              title={post.title}
-              slug={post.slug}
-              date={post.date}
-              excerpt={post.excerpt}
-              image={post.images[0]}
-            />
-          ))}
-        </StaggerGrid>
-      </section>
+      <HomeHero images={heroImages} />
+      <TripSplitScreen trips={tripPanels} />
+      {easterPost && (
+        <FeaturedStory
+          slug={easterPost.slug}
+          title={easterPost.title}
+          excerpt="Day 21: You know the trip is going well when you see the U.S. President on Easter Sunday less than 30 feet away from you..."
+          date={easterPost.date}
+          category="East Coast 2019"
+          image={wpImage(easterPost.images[0], IMG_SIZES.fullBleed)}
+        />
+      )}
+      <PhotoMosaic images={mosaicData} />
+      <RecentStrip posts={recent} />
+      <ClosingCTA image={closingImage} />
     </div>
   );
 }

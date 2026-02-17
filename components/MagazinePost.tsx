@@ -80,7 +80,7 @@ export default function MagazinePost({ post, next, prev }: Props) {
   const supportingImages = post.images.slice(1, 5);
 
   return (
-    <article>
+    <article className="-mt-48 md:-mt-56">
       {heroImage && (
         <HeroSection
           image={heroImage}

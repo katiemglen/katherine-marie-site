@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16">
+    <div className="max-w-3xl mx-auto px-6 pt-[220px] md:pt-[260px] pb-16">
       <h1 className="font-[family-name:var(--font-playfair)] text-4xl mb-8" style={{ color: 'var(--heading-color)' }}>About</h1>
       <div className="glass rounded-2xl p-8 space-y-6 leading-relaxed" style={{ color: 'var(--foreground)', opacity: 0.85 }}>
         <p>
