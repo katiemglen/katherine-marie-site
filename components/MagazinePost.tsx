@@ -16,6 +16,7 @@ import SingleFullBleed from './gallery/SingleFullBleed';
 import ThreeUpGrid from './gallery/ThreeUpGrid';
 import Lightbox from './gallery/Lightbox';
 import SectionProgress from './SectionProgress';
+import ChadTooltip from './ChadTooltip';
 
 interface PostData {
   title: string;
@@ -137,6 +138,7 @@ export default function MagazinePost({ post, next, prev }: Props) {
 
       <SectionProgress sections={progressSections} lightboxOpen={!!lightbox} />
 
+      <ChadTooltip>
       <div style={{ viewTransitionName: 'post-content' }}>
         {parsed.sections.map((section, si) => (
           <section
@@ -188,6 +190,7 @@ export default function MagazinePost({ post, next, prev }: Props) {
           </section>
         ))}
       </div>
+      </ChadTooltip>
 
       <div className="px-4 md:px-8 lg:px-16 pb-16">
         <NextStoryTeaser next={next} prev={prev} />

@@ -5,7 +5,7 @@ import Link from "next/link";
 import ThemeProvider from "@/components/ThemeProvider";
 import Navigation from "@/components/Navigation";
 import ScrollToTop from "@/components/ScrollToTop";
-// Particles and sunrise effect removed — too distracting
+import CursorSparkle from "@/components/CursorSparkle";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </footer>
           <ScrollToTop />
-          {/* Particles and sunrise removed */}
+          <CursorSparkle />
         </ThemeProvider>
       </body>
     </html>

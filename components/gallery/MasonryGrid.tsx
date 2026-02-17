@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
 import { fadeInScale, staggerContainer, defaultTransition } from '@/lib/animations';
+import TiltCard from '../TiltCard';
 
 interface Props {
   images: string[];
@@ -21,12 +22,13 @@ export default function MasonryGrid({ images, onImageClick }: Props) {
       {images.map((src, i) => (
         <motion.div
           key={src}
-          className="break-inside-avoid mb-3 cursor-pointer overflow-hidden rounded-xl will-animate relative group"
+          className="break-inside-avoid mb-3"
           variants={fadeInScale}
           transition={defaultTransition}
-          onClick={() => onImageClick(i)}
         >
-          <img src={wpImage(src, IMG_SIZES.gallery)} alt="" loading="lazy" className="w-full hover:scale-105 transition-transform duration-500" />
+          <TiltCard className="cursor-pointer overflow-hidden rounded-xl will-animate relative group">
+            <img src={wpImage(src, IMG_SIZES.gallery)} alt="" loading="lazy" className="w-full hover:scale-105 transition-transform duration-500" onClick={() => onImageClick(i)} />
+          </TiltCard>
         </motion.div>
       ))}
     </motion.div>

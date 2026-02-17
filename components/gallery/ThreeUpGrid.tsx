@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
 import { fadeInScale, staggerContainer, defaultTransition } from '@/lib/animations';
+import TiltCard from '../TiltCard';
 
 interface Props {
   images: string[];
@@ -21,12 +22,13 @@ export default function ThreeUpGrid({ images, onImageClick }: Props) {
       {images.map((src, i) => (
         <motion.div
           key={src}
-          className="cursor-pointer overflow-hidden rounded-xl aspect-square will-animate relative group"
+          className="aspect-square"
           variants={fadeInScale}
           transition={defaultTransition}
-          onClick={() => onImageClick(i)}
         >
-          <img src={wpImage(src, IMG_SIZES.gallery)} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+          <TiltCard className="cursor-pointer overflow-hidden rounded-xl will-animate relative group h-full">
+            <img src={wpImage(src, IMG_SIZES.gallery)} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" onClick={() => onImageClick(i)} />
+          </TiltCard>
         </motion.div>
       ))}
     </motion.div>

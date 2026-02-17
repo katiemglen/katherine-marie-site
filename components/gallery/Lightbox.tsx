@@ -112,10 +112,13 @@ export default function Lightbox({ images, initialIndex, onClose }: LightboxProp
           alt=""
           className="max-h-[90vh] max-w-[95vw] object-contain select-none"
           style={{ transform: `scale(${scale})` }}
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.3 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{
+            opacity: { duration: 0.2 },
+            scale: { type: 'spring', stiffness: 300, damping: 20 },
+          }}
           draggable={false}
         />
       </motion.div>
