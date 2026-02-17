@@ -1,7 +1,7 @@
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import MagazinePost from "@/components/MagazinePost";
-import TripStatsPage from "@/components/TripStatsPage";
+import WestCoastTripStats from "@/components/WestCoastTripStats";
 import EastCoastTripStats from "@/components/EastCoastTripStats";
 
 export async function generateStaticParams() {
@@ -37,7 +37,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     p ? { slug: p.slug, title: p.title, images: p.images } : null;
 
   if (slug === "2016-trip-stats") {
-    return <TripStatsPage post={postData} />;
+    return <WestCoastTripStats />;
   }
 
   if (slug === "2019-trip-stats") {
