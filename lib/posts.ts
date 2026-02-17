@@ -42,14 +42,14 @@ export const TRIPS = [
     title: "2016 West Coast Road Trip",
     category: "2016 West Coast Road Trip",
     description: "Three weeks in a diesel Jetta — from Minnesota to Colorado, Utah, Vegas, the Grand Canyon, and California.",
-    coverImage: "https://katherinemariedotcom.wordpress.com/wp-content/uploads/2016/12/20161219_145937.jpg",
+    coverImage: "/images/rush-hour-truly-is-horrible/20161229_095121.jpg",
   },
   {
     slug: "east-coast-2019",
     title: "2019 East Coast Road Trip",
     category: "2019 East Coast Road Trip",
     description: "Exploring the eastern seaboard — history, beaches, cities, and everything in between.",
-    coverImage: "/images/peggys-cove/resized_20190509_062921.jpg",
+    coverImage: "/images/civil-war/20190428_130157.jpg",
   },
 ];
 

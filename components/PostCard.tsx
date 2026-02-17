@@ -27,7 +27,7 @@ export default function PostCard({ title, slug, date, excerpt, image }: Props) {
         <div className="p-5">
           <time className="text-xs" style={{ color: 'var(--accent)', opacity: 0.8 }}>{new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</time>
           <h3 className="font-[family-name:var(--font-playfair)] text-lg mt-1 group-hover:text-[var(--accent)] transition" style={{ color: 'var(--heading-color)' }}>{title}</h3>
-          {excerpt && <p className="text-sm mt-2" style={{ color: 'var(--muted-text)' }}>{excerpt}</p>}
+          {/* excerpt removed for cleaner tiles */}
         </div>
       </Link>
     </motion.div>
