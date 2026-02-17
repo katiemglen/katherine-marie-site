@@ -12,7 +12,7 @@ export default function Home() {
 
   // Hero images — local files confirmed
   const heroImages = [
-    '/images/peggys-cove/resized_20190509_062921.jpg',
+    '/images/peggys-cove/20190509_125233.jpg',
     '/images/blue-ridge/20190427_090459.jpg',
     '/images/florida-keys-day-trip/20190415_173245.jpg',
     '/images/sunny-manhattan/20190502_114324.jpg',
