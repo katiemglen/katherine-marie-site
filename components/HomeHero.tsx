@@ -53,7 +53,7 @@ export default function HomeHero({ images }: HomeHeroProps) {
         <motion.img
           src="/images/logo-roadtrip.png"
           alt="Katherine Marie"
-          className="w-[208px] md:w-[260px] h-auto"
+          className="w-[288px] md:w-[360px] h-auto"
           style={{ filter: 'brightness(0) invert(1)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
