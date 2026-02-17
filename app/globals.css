@@ -1,8 +1,52 @@
 @import "tailwindcss";
 
+[data-theme="light"] {
+  --background: #faf6f1;
+  --foreground: #3d3529;
+  --heading-color: #2d5016;
+  --accent: #b8860b;
+  --accent-secondary: #d4a843;
+  --card-bg: rgba(255, 253, 248, 0.7);
+  --card-border: rgba(180, 160, 120, 0.2);
+  --glass-bg: rgba(250, 246, 241, 0.6);
+  --glass-border: rgba(180, 160, 120, 0.15);
+  --muted-text: #7a6f5f;
+  --nav-bg: rgba(250, 246, 241, 0.85);
+  --category-bg: rgba(45, 80, 22, 0.1);
+  --category-text: #2d5016;
+  --category-border: rgba(45, 80, 22, 0.2);
+  --link-color: #2d5016;
+  --blockquote-border: #b8860b;
+  --blockquote-text: #5a4f3f;
+}
+
+[data-theme="dark"] {
+  --background: #0a0f0d;
+  --foreground: #e8ede9;
+  --heading-color: #6ee7b7;
+  --accent: #fbbf24;
+  --accent-secondary: #f59e0b;
+  --card-bg: rgba(16, 30, 22, 0.6);
+  --card-border: rgba(52, 211, 153, 0.15);
+  --glass-bg: rgba(16, 30, 22, 0.6);
+  --glass-border: rgba(52, 211, 153, 0.15);
+  --muted-text: #9ca3af;
+  --nav-bg: rgba(16, 30, 22, 0.6);
+  --category-bg: rgba(52, 211, 153, 0.1);
+  --category-text: #6ee7b7;
+  --category-border: rgba(52, 211, 153, 0.3);
+  --link-color: #5eead4;
+  --blockquote-border: #6ee7b7;
+  --blockquote-text: #a7f3d0;
+}
+
 :root {
   --background: #0a0f0d;
   --foreground: #e8ede9;
+}
+
+*, *::before, *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
@@ -11,9 +55,9 @@ body {
 }
 
 .glass {
-  background: rgba(16, 30, 22, 0.6);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(52, 211, 153, 0.15);
+  border: 1px solid var(--glass-border);
 }
 
 .prose-custom img {
@@ -25,7 +69,7 @@ body {
 
 .prose-custom h2,
 .prose-custom h3 {
-  color: #6ee7b7;
+  color: var(--heading-color);
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
@@ -46,17 +90,17 @@ body {
 }
 
 .prose-custom a {
-  color: #5eead4;
+  color: var(--link-color);
   text-decoration: underline;
 }
 
 .prose-custom em {
-  color: #fbbf24;
+  color: var(--accent);
 }
 
 .prose-custom blockquote {
-  border-left: 3px solid #6ee7b7;
+  border-left: 3px solid var(--blockquote-border);
   padding-left: 1rem;
-  color: #a7f3d0;
+  color: var(--blockquote-text);
   font-style: italic;
 }

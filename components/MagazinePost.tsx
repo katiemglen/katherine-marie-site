@@ -11,6 +11,7 @@ import TwoColumnStagger from './gallery/TwoColumnStagger';
 import SingleFullBleed from './gallery/SingleFullBleed';
 import ThreeUpGrid from './gallery/ThreeUpGrid';
 import Lightbox from './gallery/Lightbox';
+import SectionProgress from './SectionProgress';
 
 interface PostData {
   title: string;
@@ -57,12 +58,19 @@ export default function MagazinePost({ post, next, prev }: Props) {
     setLightbox({ images, index });
   }, []);
 
+  const progressSections = useMemo(
+    () =>
+      parsed.sections
+        .map((s, i) => (s.heading ? { id: `section-${i}`, heading: s.heading } : null))
+        .filter((s): s is { id: string; heading: string } => s !== null),
+    [parsed.sections]
+  );
+
   const heroImage = post.images[0];
   const supportingImages = post.images.slice(1, 5);
 
   return (
     <article>
-      {/* Hero */}
       {heroImage && (
         <HeroSection
           image={heroImage}
@@ -72,7 +80,6 @@ export default function MagazinePost({ post, next, prev }: Props) {
         />
       )}
 
-      {/* Supporting grid */}
       {supportingImages.length > 0 && (
         <motion.div
           className="grid grid-cols-2 md:grid-cols-4 gap-2 px-4 md:px-8 lg:px-16 py-4"
@@ -95,13 +102,15 @@ export default function MagazinePost({ post, next, prev }: Props) {
         </motion.div>
       )}
 
-      {/* Content sections */}
+      <SectionProgress sections={progressSections} lightboxOpen={!!lightbox} />
+
       <div className="max-w-3xl mx-auto px-6 md:px-8 py-8">
         {parsed.sections.map((section, si) => (
-          <section key={si} className="mb-12">
+          <section key={si} id={`section-${si}`} className="mb-12">
             {section.heading && (
               <motion.h2
-                className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-emerald-200 mt-8 mb-4"
+                className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl mt-8 mb-4"
+                style={{ color: 'var(--heading-color)' }}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -114,7 +123,8 @@ export default function MagazinePost({ post, next, prev }: Props) {
             {section.paragraphs.map((html, pi) => (
               <motion.div
                 key={pi}
-                className="text-emerald-100/80 text-base md:text-lg leading-[1.85] mb-4 [&_p]:mb-4 [&_a]:text-amber-400 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-amber-300"
+                className="text-base md:text-lg leading-[1.85] mb-4 [&_p]:mb-4 [&_a]:underline [&_a]:underline-offset-2"
+                style={{ color: 'var(--foreground)', opacity: 0.8 }}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -134,12 +144,10 @@ export default function MagazinePost({ post, next, prev }: Props) {
         ))}
       </div>
 
-      {/* Next story teaser */}
       <div className="px-4 md:px-8 lg:px-16 pb-16">
         <NextStoryTeaser next={next} prev={prev} />
       </div>
 
-      {/* Lightbox */}
       {lightbox && (
         <Lightbox
           images={lightbox.images}

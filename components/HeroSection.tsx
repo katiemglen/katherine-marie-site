@@ -24,7 +24,7 @@ export default function HeroSection({ image, title, date, categories }: Props) {
         className="absolute inset-0 w-full h-full object-cover"
         loading="eager"
       />
-      {/* Gradient overlay */}
+      {/* Gradient overlay — same in both themes for readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
       {/* Content */}
@@ -36,12 +36,12 @@ export default function HeroSection({ image, title, date, categories }: Props) {
         >
           <div className="flex gap-2 mb-3">
             {categories.map((c) => (
-              <span key={c} className="text-xs px-3 py-1 rounded-full bg-emerald-900/60 text-emerald-300 border border-emerald-700/30">
+              <span key={c} className="text-xs px-3 py-1 rounded-full" style={{ background: 'var(--category-bg)', color: 'var(--category-text)', border: '1px solid var(--category-border)' }}>
                 {c}
               </span>
             ))}
           </div>
-          <time className="text-amber-400/80 text-sm">{formattedDate}</time>
+          <time className="text-sm" style={{ color: 'var(--accent)', opacity: 0.8 }}>{formattedDate}</time>
           <h1 className="font-[family-name:var(--font-playfair)] text-3xl md:text-5xl lg:text-6xl text-white mt-2 max-w-3xl leading-tight">
             {title}
           </h1>

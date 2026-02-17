@@ -21,7 +21,7 @@ export default function NextStoryTeaser({ next, prev }: Props) {
     <div className="mt-16">
       {prev && (
         <div className="mb-4 text-center">
-          <Link href={`/posts/${prev.slug}`} className="text-emerald-400 hover:text-amber-300 transition text-sm">
+          <Link href={`/posts/${prev.slug}`} className="hover:text-[var(--accent)] transition text-sm" style={{ color: 'var(--link-color)' }}>
             ← Previous: {prev.title}
           </Link>
         </div>
@@ -44,9 +44,10 @@ export default function NextStoryTeaser({ next, prev }: Props) {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             )}
+            {/* Gradient stays dark in both modes for readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
-              <span className="text-amber-400/80 text-sm uppercase tracking-widest">Next Story</span>
+              <span className="text-sm uppercase tracking-widest" style={{ color: 'var(--accent)', opacity: 0.8 }}>Next Story</span>
               <h2 className="font-[family-name:var(--font-playfair)] text-2xl md:text-4xl text-white mt-2">
                 {next.title}
               </h2>
