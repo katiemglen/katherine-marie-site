@@ -2,12 +2,14 @@
 
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
+import TiltCard from './TiltCard';
 
 interface StripPost {
   slug: string;
   title: string;
   date: string;
   image: string;
+  mood?: { emoji: string; label: string };
 }
 
 export default function RecentStrip({ posts }: { posts: StripPost[] }) {
@@ -43,7 +45,6 @@ export default function RecentStrip({ posts }: { posts: StripPost[] }) {
       </h2>
 
       <div className="relative group/strip">
-        {/* Scroll arrows — desktop only */}
         {canScrollLeft && (
           <button
             onClick={() => scroll(-1)}
@@ -73,35 +74,59 @@ export default function RecentStrip({ posts }: { posts: StripPost[] }) {
           }}
         >
           {posts.map((post) => (
-            <Link
+            <TiltCard
               key={post.slug}
-              href={`/posts/${post.slug}`}
-              className="flex-shrink-0 relative w-[260px] md:w-[300px] rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-              style={{ aspectRatio: '3/4', scrollSnapAlign: 'start' }}
+              className="flex-shrink-0 w-[260px] md:w-[300px]"
             >
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div
-                className="absolute bottom-0 left-0 right-0 p-5"
+              <Link
+                href={`/posts/${post.slug}`}
+                className="relative block rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-1"
                 style={{
-                  backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
-                  background: 'rgba(0,0,0,0.25)',
-                  borderTop: '1px solid rgba(255,255,255,0.1)',
+                  aspectRatio: '3/4',
+                  scrollSnapAlign: 'start',
+                  border: '1px solid rgba(var(--accent-rgb), 0.2)',
+                  background: 'linear-gradient(135deg, rgba(var(--accent-rgb), 0.05), rgba(var(--accent-rgb), 0.02))',
+                  boxShadow: '0 4px 24px rgba(var(--accent-rgb), 0.1)',
                 }}
               >
-                <h3 className="text-white text-sm md:text-base font-medium leading-snug">
-                  {post.title}
-                </h3>
-                <p className="text-white/60 text-xs mt-1">
-                  {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                </p>
-              </div>
-            </Link>
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                {/* Mood tag */}
+                {post.mood && (
+                  <span
+                    className="absolute top-3 left-3 px-2 py-1 rounded-full text-[10px] font-medium z-10"
+                    style={{
+                      background: 'rgba(var(--accent-rgb), 0.15)',
+                      backdropFilter: 'blur(8px)',
+                      color: 'var(--accent)',
+                      border: '1px solid rgba(var(--accent-rgb), 0.2)',
+                    }}
+                  >
+                    {post.mood.emoji} {post.mood.label}
+                  </span>
+                )}
+                <div
+                  className="absolute bottom-0 left-0 right-0 p-5"
+                  style={{
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    background: 'rgba(0,0,0,0.25)',
+                    borderTop: '1px solid rgba(255,255,255,0.1)',
+                  }}
+                >
+                  <h3 className="text-white text-sm md:text-base font-medium leading-snug">
+                    {post.title}
+                  </h3>
+                  <p className="text-white/60 text-xs mt-1">
+                    {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </p>
+                </div>
+              </Link>
+            </TiltCard>
           ))}
         </div>
       </div>

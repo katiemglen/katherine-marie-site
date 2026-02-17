@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import TiltCard from './TiltCard';
 
 interface TripPanel {
   slug: string;
@@ -15,6 +16,7 @@ export default function TripSplitScreen({ trips }: { trips: TripPanel[] }) {
   return (
     <section className="grid md:grid-cols-2 photo-enhanced">
       {trips.map((trip) => (
+        <TiltCard key={trip.slug + '-tilt'} className="relative">
         <Link
           key={trip.slug}
           href={`/trips/${trip.slug}`}

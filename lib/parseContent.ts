@@ -105,7 +105,11 @@ export function parseWordPressContent(html: string, _images: string[]): ParsedCo
 
     const h2Match = trimmed.match(/^<h2[^>]*>([\s\S]*?)<\/h2>$/);
     if (h2Match) {
-      pieces.push({ type: 'heading', text: h2Match[1].trim() });
+      // Strip all HTML tags from heading text (fixes <strong>, <a>, <img> inside h2)
+      const cleanHeading = h2Match[1].replace(/<[^>]+>/g, '').trim();
+      if (cleanHeading) {
+        pieces.push({ type: 'heading', text: cleanHeading });
+      }
       continue;
     }
     const galMatch = trimmed.match(/^__GALLERY_(\d+)__$/);

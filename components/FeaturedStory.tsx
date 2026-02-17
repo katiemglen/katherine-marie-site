@@ -38,12 +38,13 @@ export default function FeaturedStory({ slug, title, excerpt, date, category, im
         <div
           className="md:col-span-2 md:-ml-10 relative z-10"
           style={{
-            background: 'var(--glass-bg)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid var(--glass-border)',
+            background: 'rgba(var(--accent-rgb), 0.08)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            border: '1px solid rgba(var(--accent-rgb), 0.15)',
             borderRadius: '1.5rem',
             padding: '2rem',
+            boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.1), 0 8px 32px rgba(0,0,0,0.08)',
           }}
         >
           <span

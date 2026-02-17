@@ -56,3 +56,17 @@ export const TRIPS = [
 export function getTripBySlug(slug: string) {
   return TRIPS.find((t) => t.slug === slug);
 }
+
+export function getPostMood(post: Pick<Post, 'title' | 'content'>): { emoji: string; label: string } {
+  const text = (post.title + ' ' + post.content).toLowerCase();
+
+  const chadGrumpy = /chad/.test(text) && /stubborn|grumpy|salty|worst/.test(text);
+  if (chadGrumpy) return { emoji: '😤', label: 'Chad Being Chad' };
+  if (/beach|ocean|sea\b|surf|keys/.test(text)) return { emoji: '🌊', label: 'Beach Vibes' };
+  if (/mountain|hike|trail|ridge/.test(text)) return { emoji: '⛰️', label: 'Mountain Air' };
+  if (/rain|storm|pour|cloud/.test(text)) return { emoji: '🌧️', label: 'Rainy Adventure' };
+  if (/food|eat|restaurant|coffee|bagel|lobster/.test(text)) return { emoji: '🍽️', label: 'Foodie Stop' };
+  if (/city|manhattan|boston|chicago|fargo/.test(text)) return { emoji: '🏙️', label: 'City Explorer' };
+  if (/camp|car\s+life|sleep|tent/.test(text)) return { emoji: '🏕️', label: 'Car Life' };
+  return { emoji: '🛤️', label: 'On the Road' };
+}

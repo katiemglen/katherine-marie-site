@@ -20,7 +20,6 @@ const FOOTER_LINKS = [
   { href: '/trips/west-coast-2016', label: 'West Coast' },
   { href: '/trips/east-coast-2019', label: 'East Coast' },
   { href: '/archive', label: 'Archive' },
-  { href: '/about', label: 'About' },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

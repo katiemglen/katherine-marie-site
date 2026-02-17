@@ -247,18 +247,7 @@ body {
   50% { background-position: 5% 3%, -3% 5%, 4% -2%, -5% 4%; }
 }
 
-/* Organic Heading Underlines */
-.magazine-heading {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='6' viewBox='0 0 40 6'%3E%3Cpath d='M0 3 Q5 0 10 3 Q15 6 20 3 Q25 0 30 3 Q35 6 40 3' fill='none' stroke='currentColor' stroke-width='1.5' opacity='0.5'/%3E%3C/svg%3E");
-  background-repeat: repeat-x;
-  background-position: left bottom;
-  background-size: 0% 6px;
-  padding-bottom: 4px;
-  transition: background-size 0.4s ease-out;
-}
-.magazine-heading:hover {
-  background-size: 100% 6px;
-}
+/* Heading underlines removed — clean look */
 
 /* Organic Card Hovers */
 .glass.rounded-2xl,
@@ -364,13 +353,19 @@ nav a:hover::before {
   --footer-logo-filter: brightness(0) invert(1);
 }
 
-/* Photo Enhancement — subtle vibrancy boost */
-.prose-custom img,
-[class*="gallery"] img,
+/* Photo Enhancement — vivid color grade */
 .photo-enhanced img,
+.prose-custom img,
 img[loading="lazy"] {
-  filter: saturate(1.08) contrast(1.03) brightness(1.01);
+  filter: saturate(1.15) contrast(1.06) brightness(1.04) sepia(0.05);
   transition: filter 0.3s ease;
+}
+
+/* Dark mode gets extra vibrancy */
+[data-theme="dark"] .photo-enhanced img,
+[data-theme="dark"] .prose-custom img,
+[data-theme="dark"] img[loading="lazy"] {
+  filter: saturate(1.22) contrast(1.08) brightness(1.06) sepia(0.03);
 }
 
 .photo-enhanced {
@@ -395,7 +390,7 @@ img[loading="lazy"] {
   .hero-light-rays,
   .sunrise-effect { animation: none !important; }
   .dot-pulse { animation: none !important; }
-  .magazine-heading { transition: none !important; }
+  /* magazine-heading removed */
   .section-divider + .section-divider::before { animation: none !important; }
   nav a::before { transition: none !important; }
   .glass.rounded-2xl:hover { transform: translateY(-4px); }
