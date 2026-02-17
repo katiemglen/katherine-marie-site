@@ -1,7 +1,12 @@
 import { getTripBySlug, TRIPS, getPostsByCategory } from "@/lib/posts";
 import PostCard from "@/components/PostCard";
-import { AnimatedHero, AnimatedHeading, AnimatedText, StaggerGrid } from "@/components/AnimatedLanding";
+import { StaggerGrid } from "@/components/AnimatedLanding";
 import { notFound } from "next/navigation";
+
+const TRIP_HEROES: Record<string, string> = {
+  'west-coast-2016': '/images/hiking-in-a-spiritual-place/20161225_161554.jpg',
+  'east-coast-2019': '/images/a-drive-through-a-giants-land/20170102_1154131.jpg',
+};
 
 export async function generateStaticParams() {
   return TRIPS.map((t) => ({ slug: t.slug }));
@@ -19,29 +24,51 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
   if (!trip) notFound();
 
   const posts = getPostsByCategory(trip.category);
+  const heroImage = TRIP_HEROES[slug];
 
   return (
-    <div className="max-w-5xl mx-auto px-6 pt-[220px] md:pt-[260px] pb-16">
-      <AnimatedHero>
-        <AnimatedHeading className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl mb-4 text-left" >
-          <span style={{ color: 'var(--heading-color)' }}>{trip.title}</span>
-        </AnimatedHeading>
-        <AnimatedText className="mb-12 max-w-2xl text-left" style={{ color: 'var(--muted-text)' }}>
-          {trip.description}
-        </AnimatedText>
-      </AnimatedHero>
-      <StaggerGrid className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((post) => (
-          <PostCard
-            key={post.slug}
-            title={post.title}
-            slug={post.slug}
-            date={post.date}
-            excerpt={post.excerpt}
-            image={post.images[0]}
+    <div>
+      {/* Hero Section */}
+      {heroImage && (
+        <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
+          <img
+            src={heroImage}
+            alt={trip.title}
+            className="absolute inset-0 w-full h-full object-cover"
           />
-        ))}
-      </StaggerGrid>
+          <div
+            className="absolute inset-0"
+            style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.55) 100%)' }}
+          />
+          <div className="relative z-10 text-center px-6">
+            <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-6xl text-white mb-4">
+              {trip.title}
+            </h1>
+            <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto">
+              {trip.description}
+            </p>
+            <p className="mt-4 text-sm tracking-[0.2em] uppercase" style={{ color: '#c4882a' }}>
+              {posts.length} Posts
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* Post Grid */}
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        <StaggerGrid className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post) => (
+            <PostCard
+              key={post.slug}
+              title={post.title}
+              slug={post.slug}
+              date={post.date}
+              excerpt={post.excerpt}
+              image={post.images[0]}
+            />
+          ))}
+        </StaggerGrid>
+      </div>
     </div>
   );
 }

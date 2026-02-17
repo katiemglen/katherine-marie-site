@@ -337,6 +337,24 @@ export default function EastCoastTripStats() {
           </div>
         </motion.div>
       </section>
+      {/* Closing Quote */}
+      <section className="px-4 pb-24">
+        <motion.div
+          className="max-w-3xl mx-auto text-center py-12 px-8 rounded-2xl"
+          style={glass}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <p className="text-2xl md:text-3xl italic leading-relaxed mb-4" style={{ fontFamily: "'Playfair Display', serif", color: "var(--foreground)" }}>
+            &ldquo;We are so grateful! What a blessed and beautiful trip — thanks be to God!&rdquo;
+          </p>
+          <p className="text-sm tracking-[0.2em] uppercase" style={{ color: "var(--accent)" }}>
+            — Katie & Chad
+          </p>
+        </motion.div>
+      </section>
     </main>
   );
 }

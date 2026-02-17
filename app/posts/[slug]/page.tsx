@@ -36,7 +36,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const toTeaser = (p: typeof post | null) =>
     p ? { slug: p.slug, title: p.title, images: p.images } : null;
 
-  if (slug === "trip-stats") {
+  if (slug === "2016-trip-stats") {
     return <TripStatsPage post={postData} />;
   }
 
