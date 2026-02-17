@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0f0d;
+  --foreground: #e8ede9;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.glass {
+  background: rgba(16, 30, 22, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(52, 211, 153, 0.15);
+}
+
+.prose-custom img {
+  border-radius: 0.75rem;
+  margin: 1.5rem auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose-custom h2,
+.prose-custom h3 {
+  color: #6ee7b7;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-custom p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.prose-custom ul,
+.prose-custom ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-custom li {
+  margin-bottom: 0.25rem;
+}
+
+.prose-custom a {
+  color: #5eead4;
+  text-decoration: underline;
+}
+
+.prose-custom em {
+  color: #fbbf24;
+}
+
+.prose-custom blockquote {
+  border-left: 3px solid #6ee7b7;
+  padding-left: 1rem;
+  color: #a7f3d0;
+  font-style: italic;
+}
