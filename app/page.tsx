@@ -1,4 +1,4 @@
-import { getAllPosts, TRIPS } from "@/lib/posts";
+import { getAllPosts, TRIPS, getPostMood } from "@/lib/posts";
 import { wpImage, IMG_SIZES } from "@/lib/optimizeImage";
 import HomeHero from "@/components/HomeHero";
 import TripSplitScreen from "@/components/TripSplitScreen";
@@ -6,6 +6,8 @@ import FeaturedStory from "@/components/FeaturedStory";
 import PhotoMosaic from "@/components/PhotoMosaic";
 import RecentStrip from "@/components/RecentStrip";
 import ClosingCTA from "@/components/ClosingCTA";
+import KatieQuotes from "@/components/KatieQuotes";
+import FloatingEmoji from "@/components/FloatingEmoji";
 
 export default function Home() {
   const posts = getAllPosts();
@@ -68,8 +70,9 @@ export default function Home() {
       slug: p.slug,
       title: p.title,
       image: wpImage(p.images[pick.imageIndex] || p.images[0], IMG_SIZES.gallery),
+      mood: getPostMood(p),
     } : null;
-  }).filter(Boolean) as Array<{ slug: string; title: string; image: string }>;
+  }).filter(Boolean) as Array<{ slug: string; title: string; image: string; mood: { emoji: string; label: string } }>;
 
   // Recent posts — last 8
   const recent = [...posts].reverse().slice(0, 8).map((p) => ({
@@ -77,6 +80,7 @@ export default function Home() {
     title: p.title,
     date: p.date,
     image: wpImage(p.images[0], IMG_SIZES.gallery),
+    mood: getPostMood(p),
   }));
 
   // Closing CTA — open road shot from West Coast
@@ -84,21 +88,36 @@ export default function Home() {
 
   return (
     <div>
-      <HomeHero images={heroImages} />
-      <TripSplitScreen trips={tripPanels} />
+      <FloatingEmoji emoji={['🗺️', '🚗', '✨']}>
+        <HomeHero images={heroImages} />
+      </FloatingEmoji>
+      <FloatingEmoji emoji={['🌎', '📍', '🛣️']}>
+        <TripSplitScreen trips={tripPanels} />
+      </FloatingEmoji>
       {easterPost && (
-        <FeaturedStory
-          slug={easterPost.slug}
-          title={easterPost.title}
-          excerpt="Day 21: You know the trip is going well when you see the U.S. President on Easter Sunday less than 30 feet away from you..."
-          date={easterPost.date}
-          category="East Coast 2019"
-          image={wpImage(easterPost.images[0], IMG_SIZES.fullBleed)}
-        />
+        <FloatingEmoji emoji={['📖', '☀️', '🏖️']}>
+          <FeaturedStory
+            slug={easterPost.slug}
+            title={easterPost.title}
+            excerpt="Day 21: You know the trip is going well when you see the U.S. President on Easter Sunday less than 30 feet away from you..."
+            date={easterPost.date}
+            category="East Coast 2019"
+            image={wpImage(easterPost.images[0], IMG_SIZES.fullBleed)}
+          />
+        </FloatingEmoji>
       )}
-      <PhotoMosaic images={mosaicData} />
-      <RecentStrip posts={recent} />
-      <ClosingCTA image={closingImage} />
+      <FloatingEmoji emoji={['📸', '🌿', '🌅']}>
+        <PhotoMosaic images={mosaicData} />
+      </FloatingEmoji>
+      <FloatingEmoji emoji={['💬', '😂', '❤️']}>
+        <KatieQuotes />
+      </FloatingEmoji>
+      <FloatingEmoji emoji={['🆕', '👀', '🌟']}>
+        <RecentStrip posts={recent} />
+      </FloatingEmoji>
+      <FloatingEmoji emoji={['🛤️', '🌄', '✦']}>
+        <ClosingCTA image={closingImage} />
+      </FloatingEmoji>
     </div>
   );
 }
