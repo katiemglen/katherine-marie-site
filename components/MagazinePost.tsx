@@ -121,11 +121,13 @@ export default function MagazinePost({ post, next, prev }: Props) {
         >
           <button
             onClick={() => setStoryOpen(true)}
-            className="px-6 py-2.5 rounded-full text-sm font-medium border"
+            className="px-6 py-2.5 rounded-full text-sm font-medium"
             style={{
-              background: 'var(--card-bg)',
+              background: 'var(--glass-bg)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
               color: 'var(--foreground)',
-              borderColor: 'var(--border, rgba(128,128,128,0.2))',
+              border: '1px solid var(--glass-border)',
             }}
           >
             📖 Read as Story

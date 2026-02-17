@@ -11,7 +11,7 @@ interface MosaicItem {
 
 export default function PhotoMosaic({ images }: { images: MosaicItem[] }) {
   return (
-    <section className="px-1 md:px-2 py-12 md:py-20" style={{ background: 'var(--section-alt-bg)' }}>
+    <section className="px-1 md:px-2 py-12 md:py-20 photo-enhanced" style={{ background: 'var(--section-alt-bg)' }}>
       <div
         className="grid grid-cols-2 md:grid-cols-3 auto-rows-[200px] md:auto-rows-[280px]"
         style={{ gap: '4px' }}
@@ -30,9 +30,16 @@ export default function PhotoMosaic({ images }: { images: MosaicItem[] }) {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
-                <span className="text-white text-sm md:text-base font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center px-4">
+              {/* Glassmorphic hover overlay */}
+              <div
+                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  background: 'rgba(0,0,0,0.2)',
+                }}
+              >
+                <span className="text-white text-sm md:text-base font-medium text-center px-4">
                   {item.title} →
                 </span>
               </div>

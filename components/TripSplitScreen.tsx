@@ -13,7 +13,7 @@ interface TripPanel {
 
 export default function TripSplitScreen({ trips }: { trips: TripPanel[] }) {
   return (
-    <section className="grid md:grid-cols-2">
+    <section className="grid md:grid-cols-2 photo-enhanced">
       {trips.map((trip) => (
         <Link
           key={trip.slug}
@@ -32,11 +32,16 @@ export default function TripSplitScreen({ trips }: { trips: TripPanel[] }) {
           {/* Gold tint on hover */}
           <div className="absolute inset-0 bg-[rgba(196,136,42,0)] group-hover:bg-[rgba(196,136,42,0.15)] transition-colors duration-500" />
 
-          {/* Bottom gradient */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 40%, transparent 60%)' }} />
-
-          {/* Text */}
-          <div className="absolute bottom-0 left-0 p-8 md:p-10 z-10">
+          {/* Glassmorphic info panel */}
+          <div
+            className="absolute bottom-0 left-0 right-0 z-10 p-8 md:p-10 transition-transform duration-500 ease-out group-hover:-translate-y-2"
+            style={{
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              background: 'rgba(0,0,0,0.3)',
+              borderTop: '1px solid rgba(255,255,255,0.15)',
+            }}
+          >
             <h2 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-white mb-2">
               {trip.title}
             </h2>

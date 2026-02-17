@@ -93,9 +93,10 @@ export default function Navigation() {
           style={{
             height: 56,
             background: 'var(--glass-bg)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            borderBottom: '1px solid var(--glass-border)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            borderBottom: '1px solid rgba(var(--accent-rgb), 0.12)',
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 24px rgba(0,0,0,0.08)',
           }}
         >
           {/* Wordmark left */}

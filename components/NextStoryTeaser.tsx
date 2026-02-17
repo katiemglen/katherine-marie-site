@@ -44,9 +44,17 @@ export default function NextStoryTeaser({ next, prev }: Props) {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             )}
-            {/* Gradient stays dark in both modes for readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
+            {/* Glassmorphic bottom panel */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            <div
+              className="absolute bottom-0 left-0 right-0 p-6 md:p-12 transition-transform duration-500 group-hover:-translate-y-1"
+              style={{
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                background: 'rgba(0,0,0,0.3)',
+                borderTop: '1px solid rgba(var(--accent-rgb), 0.2)',
+              }}
+            >
               <span className="text-sm uppercase tracking-widest" style={{ color: 'var(--accent)', opacity: 0.8 }}>Next Story</span>
               <h2 className="font-[family-name:var(--font-playfair)] text-2xl md:text-4xl text-white mt-2">
                 {next.title}

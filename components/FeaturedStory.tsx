@@ -34,8 +34,18 @@ export default function FeaturedStory({ slug, title, excerpt, date, category, im
           </Link>
         </div>
 
-        {/* Text — 40% */}
-        <div className="md:col-span-2">
+        {/* Text — 40% with glass card */}
+        <div
+          className="md:col-span-2 md:-ml-10 relative z-10"
+          style={{
+            background: 'var(--glass-bg)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid var(--glass-border)',
+            borderRadius: '1.5rem',
+            padding: '2rem',
+          }}
+        >
           <span
             className="inline-block text-xs uppercase tracking-[0.2em] px-3 py-1 rounded-full mb-4"
             style={{

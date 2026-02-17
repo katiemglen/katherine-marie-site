@@ -34,7 +34,7 @@ export default function RecentStrip({ posts }: { posts: StripPost[] }) {
   };
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 photo-enhanced">
       <h2
         className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl px-6 md:px-12 mb-8"
         style={{ color: 'var(--foreground)' }}
@@ -86,10 +86,14 @@ export default function RecentStrip({ posts }: { posts: StripPost[] }) {
                 loading="lazy"
               />
               <div
-                className="absolute inset-0"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 50%)' }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-5">
+                className="absolute bottom-0 left-0 right-0 p-5"
+                style={{
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                  background: 'rgba(0,0,0,0.25)',
+                  borderTop: '1px solid rgba(255,255,255,0.1)',
+                }}
+              >
                 <h3 className="text-white text-sm md:text-base font-medium leading-snug">
                   {post.title}
                 </h3>
