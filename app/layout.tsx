@@ -52,12 +52,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'color-mix(in srgb, var(--accent) 8%, transparent)' }} />
             
             <div className="flex flex-col items-center">
-              <img
-                src="/images/logo-rectangle.png"
-                alt="Katherine Marie — Adventure Memories"
-                className="w-[216px] h-auto"
-                style={{ filter: 'var(--footer-logo-filter, none)' }}
-              />
+              <Link href="/">
+                <img
+                  src="/images/logo-rectangle.png"
+                  alt="Katherine Marie — Adventure Memories"
+                  className="w-[216px] h-auto"
+                  style={{ filter: 'var(--footer-logo-filter, none)' }}
+                />
+              </Link>
 
               <nav className="mt-6 flex items-center text-[11px] tracking-[0.15em] uppercase">
                 {FOOTER_LINKS.map((link, i) => (
