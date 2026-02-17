@@ -2,6 +2,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import MagazinePost from "@/components/MagazinePost";
 import TripStatsPage from "@/components/TripStatsPage";
+import EastCoastTripStats from "@/components/EastCoastTripStats";
 
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -35,8 +36,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const toTeaser = (p: typeof post | null) =>
     p ? { slug: p.slug, title: p.title, images: p.images } : null;
 
-  if (slug === "trip-stats" || slug === "2019-trip-stats") {
+  if (slug === "trip-stats") {
     return <TripStatsPage post={postData} />;
+  }
+
+  if (slug === "2019-trip-stats") {
+    return <EastCoastTripStats />;
   }
 
   return <MagazinePost post={postData} next={toTeaser(next)} prev={toTeaser(prev)} />;
