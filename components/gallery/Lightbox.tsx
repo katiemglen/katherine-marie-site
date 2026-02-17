@@ -2,6 +2,7 @@
 
 import { useEffect, useCallback, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
 
 interface LightboxProps {
   images: string[];
@@ -107,7 +108,7 @@ export default function Lightbox({ images, initialIndex, onClose }: LightboxProp
         {/* Image */}
         <motion.img
           key={index}
-          src={images[index]}
+          src={wpImage(images[index], IMG_SIZES.lightbox)}
           alt=""
           className="max-h-[90vh] max-w-[95vw] object-contain select-none"
           style={{ transform: `scale(${scale})` }}

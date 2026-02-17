@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
 
 interface Props {
   images: string[];
@@ -24,7 +25,7 @@ export default function ThreeUpGrid({ images, onImageClick }: Props) {
           transition={{ duration: 0.4, ease: 'easeOut' }}
           onClick={() => onImageClick(i)}
         >
-          <img src={src} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+          <img src={wpImage(src, IMG_SIZES.gallery)} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
         </motion.div>
       ))}
     </motion.div>

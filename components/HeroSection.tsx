@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
 
 interface Props {
   image: string;
@@ -19,7 +20,7 @@ export default function HeroSection({ image, title, date, categories }: Props) {
   return (
     <div className="relative w-full h-[80vh] overflow-hidden" style={{ viewTransitionName: 'hero-image' }}>
       <img
-        src={image}
+        src={wpImage(image, IMG_SIZES.hero)}
         alt={title}
         className="absolute inset-0 w-full h-full object-cover"
         loading="eager"

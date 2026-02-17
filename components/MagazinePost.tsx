@@ -3,6 +3,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { parseWordPressContent, type GalleryBlock } from '@/lib/parseContent';
+import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
 import HeroSection from './HeroSection';
 import VideoSection from './VideoSection';
 import NextStoryTeaser from './NextStoryTeaser';
@@ -96,7 +97,7 @@ export default function MagazinePost({ post, next, prev }: Props) {
               transition={{ duration: 0.4, ease: 'easeOut' }}
               onClick={() => openLightbox(supportingImages, i)}
             >
-              <img src={src} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              <img src={wpImage(src, IMG_SIZES.thumbnail)} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
             </motion.div>
           ))}
         </motion.div>
