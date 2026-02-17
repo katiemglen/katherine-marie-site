@@ -1,21 +1,27 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
-interface HomeHeroProps {
-  images: string[];
+interface HeroSlide {
+  image: string;
+  slug: string;
 }
 
-export default function HomeHero({ images }: HomeHeroProps) {
+interface HomeHeroProps {
+  slides: HeroSlide[];
+}
+
+export default function HomeHero({ slides }: HomeHeroProps) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
+      setCurrent((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [images.length]);
+  }, [slides.length]);
 
   return (
     <section className="relative w-full h-screen overflow-hidden">
@@ -29,14 +35,16 @@ export default function HomeHero({ images }: HomeHeroProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: 'easeInOut' }}
         >
-          <motion.img
-            src={images[current]}
-            alt=""
-            className="w-full h-full object-cover"
-            initial={{ scale: 1.05 }}
-            animate={{ scale: 1.15 }}
-            transition={{ duration: 6, ease: 'linear' }}
-          />
+          <Link href={`/posts/${slides[current].slug}`} className="block w-full h-full">
+            <motion.img
+              src={slides[current].image}
+              alt=""
+              className="w-full h-full object-cover"
+              initial={{ scale: 1.05 }}
+              animate={{ scale: 1.15 }}
+              transition={{ duration: 6, ease: 'linear' }}
+            />
+          </Link>
         </motion.div>
       </AnimatePresence>
 
@@ -49,7 +57,7 @@ export default function HomeHero({ images }: HomeHeroProps) {
       />
 
       {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
         <motion.img
           src="/images/logo-roadtrip.png"
           alt="Katherine Marie"

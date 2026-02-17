@@ -12,14 +12,15 @@ import FloatingEmoji from "@/components/FloatingEmoji";
 export default function Home() {
   const posts = getAllPosts();
 
-  // Hero images — local files confirmed
-  const heroImages = [
-    '/images/best-bagel-in-manhattan/20190502_111038.jpg',
-    '/images/peggys-cove/20190509_125233.jpg',
-    '/images/blue-ridge/20190427_090459.jpg',
-    '/images/florida-keys-day-trip/20190415_173245.jpg',
-    '/images/sunny-manhattan/20190502_114324.jpg',
-    '/images/sea-life-beach-towns-sunsets/20190417_094848.jpg',
+  // Hero slides — image + linked post slug
+  const heroSlides = [
+    { image: '/images/peggys-cove/20190509_125233.jpg', slug: 'peggys-cove' },
+    { image: '/images/not-a-typical-new-year-celebration/20161231_153440.jpg', slug: 'not-a-typical-new-year-celebration' },
+    { image: '/images/austin-texas-is-green/20190408_172125.jpg', slug: 'austin-texas-is-green' },
+    { image: '/images/old-city-of-quebec/20190510_170139.jpg', slug: 'old-city-of-quebec' },
+    { image: '/images/maine-lobster/20190505_120611.jpg', slug: 'maine-lobster' },
+    { image: '/images/maine-lobster/20190505_171247.jpg', slug: 'maine-lobster' },
+    { image: '/images/hot-showers-in-acadia-national-park/20190507_135232.jpg', slug: 'hot-showers-in-acadia-national-park' },
   ];
 
   // Trip panels
@@ -89,7 +90,7 @@ export default function Home() {
   return (
     <div>
       <FloatingEmoji emoji={['🗺️', '🚗', '✨']}>
-        <HomeHero images={heroImages} />
+        <HomeHero slides={heroSlides} />
       </FloatingEmoji>
       <FloatingEmoji emoji={['🌎', '📍', '🛣️']}>
         <TripSplitScreen trips={tripPanels} />
