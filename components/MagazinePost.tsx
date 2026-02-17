@@ -155,7 +155,7 @@ export default function MagazinePost({ post, next, prev }: Props) {
             >
               {section.heading && (
                 <motion.h2
-                  className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl mb-4 will-animate"
+                  className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl mb-4 will-animate magazine-heading"
                   style={{ color: 'var(--heading-color)' }}
                   variants={fadeUp}
                   transition={textTransition}

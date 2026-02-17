@@ -24,6 +24,28 @@ export default function ScrollToTop() {
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress);
 
+  // Color interpolation based on scroll progress
+  const lerpColor = (a: number[], b: number[], t: number) =>
+    a.map((v, i) => Math.round(v + (b[i] - v) * t));
+  const toHex = (rgb: number[]) => '#' + rgb.map(v => v.toString(16).padStart(2, '0')).join('');
+
+  const isDark = typeof document !== 'undefined' && document.documentElement.dataset.theme === 'dark';
+  const stops = [
+    [184, 134, 11],   // 0% amber
+    [212, 168, 67],   // 33% warm gold
+    [122, 182, 72],   // 66% golden green
+    isDark ? [110, 231, 183] : [45, 80, 22], // 100% forest green
+  ];
+
+  let ringColor: string;
+  if (progress <= 0.33) {
+    ringColor = toHex(lerpColor(stops[0], stops[1], progress / 0.33));
+  } else if (progress <= 0.66) {
+    ringColor = toHex(lerpColor(stops[1], stops[2], (progress - 0.33) / 0.33));
+  } else {
+    ringColor = toHex(lerpColor(stops[2], stops[3], (progress - 0.66) / 0.34));
+  }
+
   return (
     <AnimatePresence>
       {visible && (
@@ -56,12 +78,12 @@ export default function ScrollToTop() {
               cy="24"
               r={radius}
               fill="none"
-              stroke="var(--accent)"
+              stroke={ringColor}
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeDasharray={circumference}
               strokeDashoffset={offset}
-              style={{ transition: 'stroke-dashoffset 0.1s ease' }}
+              style={{ transition: 'stroke-dashoffset 0.1s ease, stroke 0.3s ease' }}
             />
           </svg>
           {/* Arrow */}

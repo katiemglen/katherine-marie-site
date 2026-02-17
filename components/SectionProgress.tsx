@@ -86,6 +86,7 @@ export default function SectionProgress({ sections, lightboxOpen = false }: Sect
                   onClick={() => scrollTo(section.id)}
                 >
                   <motion.div
+                    className={`rounded-full border-2 flex-shrink-0 ${isActive ? 'dot-pulse' : ''}`}
                     animate={{
                       width: isActive ? 12 : 8,
                       height: isActive ? 12 : 8,
@@ -102,7 +103,6 @@ export default function SectionProgress({ sections, lightboxOpen = false }: Sect
                         : '0 0 0px transparent',
                     }}
                     transition={{ duration: 0.3 }}
-                    className="rounded-full border-2 flex-shrink-0"
                   />
 
                   {/* Tooltip */}

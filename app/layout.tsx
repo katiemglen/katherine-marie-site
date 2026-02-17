@@ -5,6 +5,8 @@ import Link from "next/link";
 import ThemeProvider from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
 import ScrollToTop from "@/components/ScrollToTop";
+import NatureParticles from "@/components/NatureParticles";
+import SunriseEffect from "@/components/SunriseEffect";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -55,6 +57,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </footer>
           <ThemeToggle />
           <ScrollToTop />
+          <NatureParticles />
+          <SunriseEffect />
         </ThemeProvider>
       </body>
     </html>

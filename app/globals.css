@@ -1,50 +1,108 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════
+   GOLDEN HOUR IN THE FOREST — Light Mode
+   Warm sunlight filtering through sage and terracotta
+   ═══════════════════════════════════════════════════════════ */
 [data-theme="light"] {
-  --background: #faf6f1;
-  --foreground: #3d3529;
-  --heading-color: #2d5016;
-  --accent: #b8860b;
-  --accent-secondary: #d4a843;
-  --card-bg: rgba(255, 253, 248, 0.7);
-  --card-border: rgba(180, 160, 120, 0.2);
-  --glass-bg: rgba(250, 246, 241, 0.6);
-  --glass-border: rgba(180, 160, 120, 0.15);
-  --muted-text: #7a6f5f;
-  --nav-bg: rgba(250, 246, 241, 0.85);
-  --category-bg: rgba(45, 80, 22, 0.1);
-  --category-text: #2d5016;
-  --category-border: rgba(45, 80, 22, 0.2);
-  --link-color: #2d5016;
-  --blockquote-border: #b8860b;
-  --blockquote-text: #5a4f3f;
-  --section-alt-bg: #f5f0e8;
+  --accent-rgb: 184, 134, 11;
+  /* Backgrounds */
+  --background: #faf5ee;              /* warm parchment */
+  --section-alt-bg: #f0ebe1;          /* deeper warm linen */
+  --nav-bg: rgba(245, 238, 226, 0.92);
+
+  /* Text — high contrast against warm backgrounds */
+  --foreground: #2c2418;              /* deep espresso brown — NOT washed out */
+  --muted-text: #6b5d4e;             /* warm medium brown */
+  --heading-color: #5a7247;           /* SAGE GREEN — the star */
+
+  /* Accent colors — the full Golden Hour palette */
+  --accent: #c4882a;                  /* warm gold / goldenrod */
+  --accent-secondary: #d4a043;        /* lighter warm gold */
+  --accent-rgb: 196, 136, 42;
+  --terracotta: #c0704a;              /* terracotta — warm earthy orange */
+  --sunset-rose: #c47a78;             /* sunset rose — soft dusty pink */
+  --sage: #7a9b68;                    /* sage green — fresh, natural */
+  --sage-deep: #5a7247;              /* deep sage — for headings */
+  --warm-gold: #c4882a;              /* warm gold */
+  --forest-accent: #4a6b3a;          /* deep forest for strong emphasis */
+
+  /* Cards & Glass */
+  --card-bg: rgba(255, 252, 245, 0.8);
+  --card-border: rgba(192, 112, 74, 0.15);   /* terracotta tinted border */
+  --glass-bg: rgba(250, 245, 238, 0.75);
+  --glass-border: rgba(122, 155, 104, 0.2);  /* sage tinted glass */
+
+  /* Categories — sage green tags */
+  --category-bg: rgba(122, 155, 104, 0.12);
+  --category-text: #4a6b3a;
+  --category-border: rgba(122, 155, 104, 0.25);
+
+  /* Links — terracotta for warmth, distinct from headings */
+  --link-color: #b0634a;
+
+  /* Blockquotes — sunset rose accent */
+  --blockquote-border: #c47a78;
+  --blockquote-text: #7a4f3f;
+
+  /* Emphasis & highlights */
+  --em-color: #c0704a;               /* terracotta for <em> */
+  --strong-color: #5a7247;           /* sage for <strong> */
 }
 
+/* ═══════════════════════════════════════════════════════════
+   FOREST AT TWILIGHT — Dark Mode
+   Deep woods with firelight, emerald canopy, amber warmth
+   ═══════════════════════════════════════════════════════════ */
 [data-theme="dark"] {
-  --background: #0a0f0d;
-  --foreground: #e8ede9;
-  --heading-color: #6ee7b7;
-  --accent: #fbbf24;
-  --accent-secondary: #f59e0b;
-  --card-bg: rgba(16, 30, 22, 0.6);
-  --card-border: rgba(52, 211, 153, 0.15);
-  --glass-bg: rgba(16, 30, 22, 0.6);
-  --glass-border: rgba(52, 211, 153, 0.15);
-  --muted-text: #9ca3af;
-  --nav-bg: rgba(16, 30, 22, 0.6);
-  --category-bg: rgba(52, 211, 153, 0.1);
-  --category-text: #6ee7b7;
-  --category-border: rgba(52, 211, 153, 0.3);
-  --link-color: #5eead4;
-  --blockquote-border: #6ee7b7;
-  --blockquote-text: #a7f3d0;
-  --section-alt-bg: #111a15;
+  --accent-rgb: 251, 191, 36;
+  /* Backgrounds */
+  --background: #0b100e;              /* deep forest floor */
+  --section-alt-bg: #131a16;          /* slightly lighter undergrowth */
+  --nav-bg: rgba(14, 22, 18, 0.85);
+
+  /* Text — warm whites for readability */
+  --foreground: #e6e2d9;              /* warm parchment white */
+  --muted-text: #a09882;             /* warm stone gray */
+  --heading-color: #8bc48a;           /* soft sage green — NOT neon */
+
+  /* Accent colors — firelight palette */
+  --accent: #e8a838;                  /* warm amber firelight */
+  --accent-secondary: #d4943a;        /* deeper amber */
+  --accent-rgb: 232, 168, 56;
+  --terracotta: #d4896a;              /* warm terracotta glow */
+  --sunset-rose: #d4908e;             /* soft rose in firelight */
+  --sage: #8bc48a;                    /* sage in moonlight */
+  --sage-deep: #6ea06d;              /* deeper sage */
+  --warm-gold: #e8a838;              /* firelight gold */
+  --forest-accent: #5cb85a;          /* vivid forest for highlights */
+
+  /* Cards & Glass */
+  --card-bg: rgba(18, 28, 22, 0.7);
+  --card-border: rgba(139, 196, 138, 0.12);  /* sage tinted */
+  --glass-bg: rgba(16, 26, 20, 0.7);
+  --glass-border: rgba(139, 196, 138, 0.12);
+
+  /* Categories — sage tags */
+  --category-bg: rgba(139, 196, 138, 0.1);
+  --category-text: #8bc48a;
+  --category-border: rgba(139, 196, 138, 0.25);
+
+  /* Links — warm terracotta in the dark */
+  --link-color: #d4896a;
+
+  /* Blockquotes — sunset rose glow */
+  --blockquote-border: #d4908e;
+  --blockquote-text: #d4b8a0;
+
+  /* Emphasis & highlights */
+  --em-color: #d4896a;
+  --strong-color: #8bc48a;
 }
 
 :root {
-  --background: #0a0f0d;
-  --foreground: #e8ede9;
+  --background: #faf5ee;
+  --foreground: #2c2418;
 }
 
 *, *::before, *::after {
@@ -158,7 +216,12 @@ body {
 }
 
 .prose-custom em {
-  color: var(--accent);
+  color: var(--em-color, var(--accent));
+}
+
+.prose-custom strong {
+  color: var(--strong-color, var(--foreground));
+  font-weight: 700;
 }
 
 .prose-custom blockquote {

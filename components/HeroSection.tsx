@@ -27,6 +27,8 @@ export default function HeroSection({ image, title, date, categories }: Props) {
       />
       {/* Gradient overlay — same in both themes for readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      {/* Light rays */}
+      <div className="absolute inset-0 pointer-events-none hero-light-rays" />
 
       {/* Content */}
       <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 lg:p-16">
