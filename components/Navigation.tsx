@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/trips/west-coast-2016', label: 'West Coast' },
   { href: '/trips/east-coast-2019', label: 'East Coast' },
+  { href: '/stats', label: 'Stats' },
 ];
 
 function ThemeIcon({ theme }: { theme: string }) {
@@ -48,7 +49,8 @@ export default function Navigation() {
 
   const isPostPage = pathname.startsWith('/posts/');
   const isHomePage = pathname === '/';
-  const isPostOrHome = isPostPage || isHomePage;
+  const isTripPage = pathname.startsWith('/trips/');
+  const isPostOrHome = isPostPage || isHomePage || isTripPage;
   const isCompact = scrollY > 200;
   const isTransparent = isPostOrHome && !isCompact;
 
