@@ -230,3 +230,127 @@ body {
   color: var(--blockquote-text);
   font-style: italic;
 }
+
+/* === Nature Microinteractions === */
+
+/* Dappled Sunlight Overlay */
+.dappled-overlay {
+  background:
+    radial-gradient(ellipse 80px 60px at 20% 30%, rgba(var(--accent-rgb), 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60px 80px at 70% 20%, rgba(var(--accent-rgb), 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 90px 50px at 50% 70%, rgba(var(--accent-rgb), 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50px 70px at 80% 60%, rgba(var(--accent-rgb), 0.1) 0%, transparent 70%);
+  animation: dappled-drift 10s ease-in-out infinite;
+}
+@keyframes dappled-drift {
+  0%, 100% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+  50% { background-position: 5% 3%, -3% 5%, 4% -2%, -5% 4%; }
+}
+
+/* Organic Heading Underlines */
+.magazine-heading {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='6' viewBox='0 0 40 6'%3E%3Cpath d='M0 3 Q5 0 10 3 Q15 6 20 3 Q25 0 30 3 Q35 6 40 3' fill='none' stroke='currentColor' stroke-width='1.5' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-size: 0% 6px;
+  padding-bottom: 4px;
+  transition: background-size 0.4s ease-out;
+}
+.magazine-heading:hover {
+  background-size: 100% 6px;
+}
+
+/* Organic Card Hovers */
+.glass.rounded-2xl,
+[class*="next-story"] {
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out !important;
+}
+.glass.rounded-2xl:hover {
+  transform: translateY(-4px) rotate(0.3deg);
+  box-shadow: 0 8px 30px rgba(var(--accent-rgb), 0.15);
+}
+
+/* Button/Link Color Bloom */
+nav a, .category-tag {
+  position: relative;
+  z-index: 1;
+}
+nav a::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: var(--accent);
+  opacity: 0;
+  border-radius: 50%;
+  transform: scale(0.8);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: -1;
+}
+nav a:hover::before {
+  opacity: 0.08;
+  transform: scale(1.2);
+}
+
+/* Animated Section Dividers */
+.section-divider + .section-divider::before {
+  height: 6px !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='6' viewBox='0 0 120 6'%3E%3Cpath d='M0 3 Q7.5 0 15 3 Q22.5 6 30 3 Q37.5 0 45 3 Q52.5 6 60 3 Q67.5 0 75 3 Q82.5 6 90 3 Q97.5 0 105 3 Q112.5 6 120 3' fill='none' stroke-width='1.5' stroke='currentColor' opacity='0.25'/%3E%3C/svg%3E") repeat-x !important;
+  background-size: 120px 6px !important;
+  animation: wave-flow 20s linear infinite;
+  color: var(--accent);
+}
+@keyframes wave-flow {
+  from { background-position: 0 0; }
+  to { background-position: 120px 0; }
+}
+
+/* Hero Light Rays */
+.hero-light-rays {
+  background:
+    linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.04) 45%, transparent 50%),
+    linear-gradient(135deg, transparent 55%, rgba(255,255,255,0.03) 60%, transparent 65%),
+    linear-gradient(125deg, transparent 25%, rgba(255,255,255,0.05) 30%, transparent 35%);
+  background-size: 200% 200%;
+  animation: hero-rays 30s ease-in-out infinite;
+}
+@keyframes hero-rays {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Section Progress Dot Pulse */
+.dot-pulse {
+  animation: organic-pulse 2s ease-in-out infinite;
+}
+@keyframes organic-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* Sunrise Effect */
+.sunrise-effect {
+  animation: sunrise 0.8s ease-out forwards;
+}
+[data-theme="light"] .sunrise-effect {
+  background: radial-gradient(circle at center, rgba(251, 191, 36, 0.25) 0%, transparent 70%);
+}
+[data-theme="dark"] .sunrise-effect {
+  background: radial-gradient(circle at center, rgba(110, 231, 183, 0.15) 0%, transparent 70%);
+}
+@keyframes sunrise {
+  0% { transform: scale(0.3); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .dappled-overlay,
+  .hero-light-rays,
+  .sunrise-effect { animation: none !important; }
+  .dot-pulse { animation: none !important; }
+  .magazine-heading { transition: none !important; }
+  .section-divider + .section-divider::before { animation: none !important; }
+  nav a::before { transition: none !important; }
+  .glass.rounded-2xl:hover { transform: translateY(-4px); }
+}
