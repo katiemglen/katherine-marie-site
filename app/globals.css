@@ -167,6 +167,20 @@ body {
   background: linear-gradient(to right, transparent, color-mix(in srgb, var(--accent) 30%, transparent) 50%, transparent);
 }
 
+.prose-custom figcaption,
+.prose-custom figure figcaption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted-text);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.prose-custom figure {
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
 .prose-custom img {
   border-radius: 0.75rem;
   margin: 1.5rem auto;

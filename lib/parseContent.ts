@@ -34,7 +34,23 @@ export function parseWordPressContent(html: string, _images: string[]): ParsedCo
   const galleries: GalleryBlock[] = [];
   const videos: string[] = [];
 
-  let processed = html;
+  // === WordPress Content Cleanup ===
+
+  // Convert WordPress [caption] shortcodes to figure/figcaption
+  let processed = html.replace(
+    /\[caption[^\]]*\]([\s\S]*?<img[^>]+>)\s*([\s\S]*?)\[\/caption\]/g,
+    '<figure class="wp-caption">$1<figcaption>$2</figcaption></figure>'
+  );
+
+  // Remove WordPress [gallery] shortcodes (images already extracted separately)
+  processed = processed.replace(/\[gallery[^\]]*\]/g, '');
+
+  // Remove WordPress numeric attachment shortcodes like [1589] [1577] [null]
+  processed = processed.replace(/\[\d+\]/g, '');
+  processed = processed.replace(/\[null\]/g, '');
+
+  // Remove stray shortcode-like patterns: [to] [their] [while] [yes] [From] [this]
+  processed = processed.replace(/\[(?:to|their|while|yes|From|this)\]/g, '');
 
   // Extract galleries
   processed = processed.replace(
