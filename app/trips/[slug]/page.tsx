@@ -1,5 +1,6 @@
 import { getTripBySlug, TRIPS, getPostsByCategory } from "@/lib/posts";
 import PostCard from "@/components/PostCard";
+import { AnimatedHero, AnimatedHeading, AnimatedText, StaggerGrid } from "@/components/AnimatedLanding";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -21,9 +22,15 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
-      <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl mb-4" style={{ color: 'var(--heading-color)' }}>{trip.title}</h1>
-      <p className="mb-12 max-w-2xl" style={{ color: 'var(--muted-text)' }}>{trip.description}</p>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <AnimatedHero>
+        <AnimatedHeading className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl mb-4 text-left" >
+          <span style={{ color: 'var(--heading-color)' }}>{trip.title}</span>
+        </AnimatedHeading>
+        <AnimatedText className="mb-12 max-w-2xl text-left" style={{ color: 'var(--muted-text)' }}>
+          {trip.description}
+        </AnimatedText>
+      </AnimatedHero>
+      <StaggerGrid className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (
           <PostCard
             key={post.slug}
@@ -34,7 +41,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
             image={post.images[0]}
           />
         ))}
-      </div>
+      </StaggerGrid>
     </div>
   );
 }

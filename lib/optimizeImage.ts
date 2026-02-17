@@ -4,7 +4,11 @@
  */
 export function wpImage(src: string, width: number = 1200): string {
   if (!src) return src;
-  // Only optimize WordPress.com hosted images
+  // Local images (migrated from WordPress) — serve as-is
+  if (src.startsWith('/images/')) {
+    return src;
+  }
+  // Only optimize WordPress.com hosted images (fallback for any missed)
   if (!src.includes('katherinemariedotcom.wordpress.com') && !src.includes('wp.com')) {
     return src;
   }

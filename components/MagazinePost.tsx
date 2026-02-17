@@ -4,6 +4,7 @@ import { useState, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { parseWordPressContent, type GalleryBlock } from '@/lib/parseContent';
 import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
+import { fadeUp, fadeInScale, staggerContainer, defaultTransition, textTransition } from '@/lib/animations';
 import HeroSection from './HeroSection';
 import VideoSection from './VideoSection';
 import NextStoryTeaser from './NextStoryTeaser';
@@ -87,14 +88,14 @@ export default function MagazinePost({ post, next, prev }: Props) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+          variants={staggerContainer(80)}
         >
           {supportingImages.map((src, i) => (
             <motion.div
               key={src}
-              className="overflow-hidden rounded-xl cursor-pointer aspect-square"
-              variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
+              className="overflow-hidden rounded-xl cursor-pointer aspect-square will-animate"
+              variants={fadeInScale}
+              transition={defaultTransition}
               onClick={() => openLightbox(supportingImages, i)}
             >
               <img src={wpImage(src, IMG_SIZES.thumbnail)} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
@@ -105,42 +106,54 @@ export default function MagazinePost({ post, next, prev }: Props) {
 
       <SectionProgress sections={progressSections} lightboxOpen={!!lightbox} />
 
-      <div className="max-w-3xl mx-auto px-6 md:px-8 py-8" style={{ viewTransitionName: 'post-content' }}>
+      <div style={{ viewTransitionName: 'post-content' }}>
         {parsed.sections.map((section, si) => (
-          <section key={si} id={`section-${si}`} className="mb-12">
-            {section.heading && (
-              <motion.h2
-                className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl mt-8 mb-4"
-                style={{ color: 'var(--heading-color)' }}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-              >
-                {section.heading}
-              </motion.h2>
-            )}
+          <section
+            key={si}
+            id={`section-${si}`}
+            className="section-divider"
+            style={{
+              background: si % 2 === 0 ? 'var(--background)' : 'var(--section-alt-bg)',
+              contentVisibility: si > 0 ? 'auto' : undefined,
+            } as React.CSSProperties}
+          >
+            <motion.div
+              className="max-w-3xl mx-auto px-6 md:px-8 py-12 md:py-16"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+              variants={staggerContainer(80)}
+            >
+              {section.heading && (
+                <motion.h2
+                  className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl mb-4 will-animate"
+                  style={{ color: 'var(--heading-color)' }}
+                  variants={fadeUp}
+                  transition={textTransition}
+                >
+                  {section.heading}
+                </motion.h2>
+              )}
 
-            {section.paragraphs.map((html, pi) => (
-              <motion.div
-                key={pi}
-                className="text-base md:text-lg leading-[1.85] mb-4 [&_p]:mb-4 [&_a]:underline [&_a]:underline-offset-2"
-                style={{ color: 'var(--foreground)', opacity: 0.8 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3 }}
-                dangerouslySetInnerHTML={{ __html: html }}
-              />
-            ))}
+              {section.paragraphs.map((html, pi) => (
+                <motion.div
+                  key={pi}
+                  className="text-base md:text-lg leading-[1.85] mb-4 [&_p]:mb-4 [&_a]:underline [&_a]:underline-offset-2 will-animate"
+                  style={{ color: 'var(--foreground)', opacity: 0.8 }}
+                  variants={fadeUp}
+                  transition={textTransition}
+                  dangerouslySetInnerHTML={{ __html: html }}
+                />
+              ))}
 
-            {section.videos.map((src, vi) => (
-              <VideoSection key={vi} src={src} />
-            ))}
+              {section.videos.map((src, vi) => (
+                <VideoSection key={vi} src={src} />
+              ))}
 
-            {section.galleries.map((gallery, gi) => (
-              <GalleryRenderer key={gi} gallery={gallery} onImageClick={openLightbox} />
-            ))}
+              {section.galleries.map((gallery, gi) => (
+                <GalleryRenderer key={gi} gallery={gallery} onImageClick={openLightbox} />
+              ))}
+            </motion.div>
           </section>
         ))}
       </div>

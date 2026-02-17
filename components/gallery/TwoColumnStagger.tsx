@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
+import { fadeInScale, staggerContainer, defaultTransition } from '@/lib/animations';
 
 interface Props {
   images: string[];
@@ -15,14 +16,14 @@ export default function TwoColumnStagger({ images, onImageClick }: Props) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-50px' }}
-      variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+      variants={staggerContainer(60)}
     >
       {images.map((src, i) => (
         <motion.div
           key={src}
-          className={`cursor-pointer overflow-hidden rounded-xl ${i % 2 === 1 ? 'mt-8' : ''}`}
-          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className={`cursor-pointer overflow-hidden rounded-xl will-animate ${i % 2 === 1 ? 'mt-8' : ''}`}
+          variants={fadeInScale}
+          transition={defaultTransition}
           onClick={() => onImageClick(i)}
         >
           <img src={wpImage(src, IMG_SIZES.gallery)} alt="" loading="lazy" className="w-full hover:scale-105 transition-transform duration-500" />

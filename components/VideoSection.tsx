@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { fadeIn, defaultTransition } from '@/lib/animations';
 
 interface Props {
   src: string;
@@ -9,11 +10,12 @@ interface Props {
 export default function VideoSection({ src }: Props) {
   return (
     <motion.div
-      className="my-8"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      className="my-8 will-animate"
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      variants={fadeIn}
+      transition={defaultTransition}
     >
       <video
         src={src}

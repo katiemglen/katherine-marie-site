@@ -18,6 +18,7 @@
   --link-color: #2d5016;
   --blockquote-border: #b8860b;
   --blockquote-text: #5a4f3f;
+  --section-alt-bg: #f5f0e8;
 }
 
 [data-theme="dark"] {
@@ -38,6 +39,7 @@
   --link-color: #5eead4;
   --blockquote-border: #6ee7b7;
   --blockquote-text: #a7f3d0;
+  --section-alt-bg: #111a15;
 }
 
 :root {
@@ -104,6 +106,21 @@ body {
 @keyframes content-in {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.will-animate {
+  will-change: transform, opacity;
+}
+
+.section-divider {
+  position: relative;
+}
+
+.section-divider + .section-divider::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(to right, transparent, color-mix(in srgb, var(--accent) 30%, transparent) 50%, transparent);
 }
 
 .prose-custom img {

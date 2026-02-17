@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
+import { fadeInScale, defaultTransition } from '@/lib/animations';
 
 interface Props {
   images: string[];
@@ -11,11 +12,12 @@ interface Props {
 export default function SingleFullBleed({ images, onImageClick }: Props) {
   return (
     <motion.div
-      className="my-8 -mx-4 md:-mx-8 lg:-mx-16 cursor-pointer overflow-hidden rounded-xl"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      className="my-8 -mx-4 md:-mx-8 lg:-mx-16 cursor-pointer overflow-hidden rounded-xl will-animate"
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      variants={fadeInScale}
+      transition={defaultTransition}
       onClick={() => onImageClick(0)}
     >
       <img src={wpImage(images[0], IMG_SIZES.fullBleed)} alt="" loading="lazy" className="w-full hover:scale-[1.02] transition-transform duration-700" />
