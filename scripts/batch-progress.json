@@ -1,16 +1,9 @@
 {
   "status": "in-progress",
-  "totalImages": 2566,
-  "alreadyTracked": 468,
-  "batchesPushed": 1,
-  "imagesPushedThisRun": 250,
-  "totalPushedSoFar": 718,
-  "remainingUntracked": 2029,
-  "lastBatchDate": "2026-02-17T14:39:00-06:00",
-  "notes": "Reset history to split massive 2322-file commit into ~250-file batches. 3 non-image commits (nav, mp4 removal) still need to be re-applied after all image batches are pushed.",
-  "pendingPatches": [
-    "/tmp/kmc-patches/0001-Remove-mp4-videos-from-local-storage-stay-on-VideoPr.patch",
-    "/tmp/kmc-patches/0002-Branded-navigation-centered-logo-two-tier-nav-full-s.patch",
-    "/tmp/kmc-patches/0003-Nav-polish-simple-pill-hover-logo-swap-to-wordmark-o.patch"
-  ]
+  "totalImages": 2497,
+  "batchesPushed": 2,
+  "totalPushedSoFar": 968,
+  "remainingUntracked": 1779,
+  "lastBatchDate": "2026-02-17T14:54:00-06:00",
+  "notes": "Batch 1: 250 images (original). Batch 2: 250 images. Non-image code changes pushed separately. ~8 more batches needed."
 }

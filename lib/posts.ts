@@ -49,7 +49,7 @@ export const TRIPS = [
     title: "2019 East Coast Road Trip",
     category: "2019 East Coast Road Trip",
     description: "Exploring the eastern seaboard — history, beaches, cities, and everything in between.",
-    coverImage: "https://katherinemariedotcom.wordpress.com/wp-content/uploads/2019/08/img_7636.jpg",
+    coverImage: "/images/peggys-cove/resized_20190509_062921.jpg",
   },
 ];
 

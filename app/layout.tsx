@@ -5,8 +5,7 @@ import Link from "next/link";
 import ThemeProvider from "@/components/ThemeProvider";
 import Navigation from "@/components/Navigation";
 import ScrollToTop from "@/components/ScrollToTop";
-import NatureParticles from "@/components/NatureParticles";
-import SunriseEffect from "@/components/SunriseEffect";
+// Particles and sunrise effect removed — too distracting
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -80,8 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </footer>
           <ScrollToTop />
-          <NatureParticles />
-          <SunriseEffect />
+          {/* Particles and sunrise removed */}
         </ThemeProvider>
       </body>
     </html>

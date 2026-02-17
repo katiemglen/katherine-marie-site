@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
 import { fadeInScale, defaultTransition } from '@/lib/animations';
-import DappledSunlight from '../DappledSunlight';
 
 interface Props {
   images: string[];
@@ -22,7 +21,6 @@ export default function SingleFullBleed({ images, onImageClick }: Props) {
       onClick={() => onImageClick(0)}
     >
       <img src={wpImage(images[0], IMG_SIZES.fullBleed)} alt="" loading="lazy" className="w-full hover:scale-[1.02] transition-transform duration-700" />
-      <DappledSunlight />
     </motion.div>
   );
 }

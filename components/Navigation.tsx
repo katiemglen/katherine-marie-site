@@ -187,9 +187,9 @@ export default function Navigation() {
 
           <Link href="/">
             <img
-              src="/images/logo-roadtrip.png"
+              src="/images/logo-rectangle.png"
               alt="Katherine Marie"
-              className="h-[80px] md:h-[140px] w-auto"
+              className="h-[40px] md:h-[50px] w-auto"
               style={{
                 filter: (isTransparent || theme === 'dark') ? 'brightness(0) invert(1)' : 'none',
               }}
