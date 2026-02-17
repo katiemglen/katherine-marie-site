@@ -24,7 +24,7 @@ const TRIP_STATS = [
 
 export default function StatsPage() {
   return (
-    <div>
+    <div className="min-h-screen" style={{ background: "var(--background)", color: "var(--foreground)" }}>
       {/* Hero */}
       <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden">
         <div

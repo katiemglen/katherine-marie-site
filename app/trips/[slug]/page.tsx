@@ -1,11 +1,17 @@
 import { getTripBySlug, TRIPS, getPostsByCategory } from "@/lib/posts";
 import PostCard from "@/components/PostCard";
 import { StaggerGrid } from "@/components/AnimatedLanding";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const TRIP_HEROES: Record<string, string> = {
   'west-coast-2016': '/images/hiking-in-a-spiritual-place/20161225_161554.jpg',
   'east-coast-2019': '/images/a-drive-through-a-giants-land/20170102_1154131.jpg',
+};
+
+const TRIP_STATS_SLUGS: Record<string, string> = {
+  'west-coast-2016': '2016-trip-stats',
+  'east-coast-2019': '2019-trip-stats',
 };
 
 export async function generateStaticParams() {
@@ -25,6 +31,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
 
   const posts = getPostsByCategory(trip.category);
   const heroImage = TRIP_HEROES[slug];
+  const statsSlug = TRIP_STATS_SLUGS[slug];
 
   return (
     <div>
@@ -47,9 +54,23 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
             <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto">
               {trip.description}
             </p>
-            <p className="mt-4 text-sm tracking-[0.2em] uppercase" style={{ color: '#c4882a' }}>
-              {posts.length} Posts
-            </p>
+            <div className="mt-6 flex items-center justify-center gap-6">
+              <p className="text-sm tracking-[0.2em] uppercase" style={{ color: '#c4882a' }}>
+                {posts.length} Posts
+              </p>
+              {statsSlug && (
+                <>
+                  <span className="text-white/30">✦</span>
+                  <Link
+                    href={`/posts/${statsSlug}`}
+                    className="text-sm tracking-[0.2em] uppercase transition-colors hover:text-white"
+                    style={{ color: '#c4882a' }}
+                  >
+                    View Trip Stats →
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         </section>
       )}
