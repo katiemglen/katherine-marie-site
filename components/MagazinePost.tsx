@@ -104,7 +104,7 @@ export default function MagazinePost({ post, next, prev }: Props) {
 
       <SectionProgress sections={progressSections} lightboxOpen={!!lightbox} />
 
-      <div className="max-w-3xl mx-auto px-6 md:px-8 py-8">
+      <div className="max-w-3xl mx-auto px-6 md:px-8 py-8" style={{ viewTransitionName: 'post-content' }}>
         {parsed.sections.map((section, si) => (
           <section key={si} id={`section-${si}`} className="mb-12">
             {section.heading && (

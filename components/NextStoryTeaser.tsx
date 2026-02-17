@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
+import TransitionLink from './TransitionLink';
 
 interface PostTeaser {
   slug: string;
@@ -21,14 +21,14 @@ export default function NextStoryTeaser({ next, prev }: Props) {
     <div className="mt-16">
       {prev && (
         <div className="mb-4 text-center">
-          <Link href={`/posts/${prev.slug}`} className="hover:text-[var(--accent)] transition text-sm" style={{ color: 'var(--link-color)' }}>
+          <TransitionLink href={`/posts/${prev.slug}`} className="hover:text-[var(--accent)] transition text-sm" style={{ color: 'var(--link-color)' }}>
             ← Previous: {prev.title}
-          </Link>
+          </TransitionLink>
         </div>
       )}
 
       {next && (
-        <Link href={`/posts/${next.slug}`} className="block group">
+        <TransitionLink href={`/posts/${next.slug}`} className="block group">
           <motion.div
             className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden rounded-2xl"
             initial={{ opacity: 0, y: 30 }}
@@ -53,7 +53,7 @@ export default function NextStoryTeaser({ next, prev }: Props) {
               </h2>
             </div>
           </motion.div>
-        </Link>
+        </TransitionLink>
       )}
     </div>
   );

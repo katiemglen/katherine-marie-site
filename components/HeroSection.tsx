@@ -17,7 +17,7 @@ export default function HeroSection({ image, title, date, categories }: Props) {
   });
 
   return (
-    <div className="relative w-full h-[80vh] overflow-hidden">
+    <div className="relative w-full h-[80vh] overflow-hidden" style={{ viewTransitionName: 'hero-image' }}>
       <img
         src={image}
         alt={title}

@@ -60,6 +60,52 @@ body {
   border: 1px solid var(--glass-border);
 }
 
+/* === View Transitions === */
+::view-transition-old(root) {
+  animation: vt-fade-out 0.3s ease-out;
+}
+::view-transition-new(root) {
+  animation: vt-fade-in 0.3s ease-in;
+}
+@keyframes vt-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+::view-transition-old(hero-image) {
+  animation: hero-shrink 0.4s ease-in-out;
+}
+::view-transition-new(hero-image) {
+  animation: hero-expand 0.4s ease-in-out;
+}
+@keyframes hero-shrink {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.95); opacity: 0; }
+}
+@keyframes hero-expand {
+  from { transform: scale(1.05); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+::view-transition-old(post-content) {
+  animation: content-out 0.3s ease-out;
+}
+::view-transition-new(post-content) {
+  animation: content-in 0.4s ease-out 0.1s both;
+}
+@keyframes content-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+@keyframes content-in {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .prose-custom img {
   border-radius: 0.75rem;
   margin: 1.5rem auto;
