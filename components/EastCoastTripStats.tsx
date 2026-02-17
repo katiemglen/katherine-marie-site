@@ -132,21 +132,31 @@ export default function EastCoastTripStats() {
 
   return (
     <main className="min-h-screen" style={{ background: "var(--background)", color: "var(--foreground)" }}>
-      {/* Header */}
-      <section className="relative overflow-hidden pt-24 pb-8 px-4">
-        <div className="absolute inset-0 hero-light-rays pointer-events-none" />
-        <motion.div className="max-w-5xl mx-auto text-center relative z-10" initial="hidden" animate="visible" variants={stagger}>
+      {/* Hero Header */}
+      <section className="relative overflow-hidden min-h-[60vh] flex items-center justify-center">
+        <Image
+          src="/images/marthas-vineyard/20190503_160521.jpg"
+          alt="East Coast Road Trip"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%)' }} />
+        <motion.div className="relative z-10 text-center px-4" initial="hidden" animate="visible" variants={stagger}>
           <motion.div variants={fadeUp}>
-            <Link href="/" className="inline-block mb-6 text-sm tracking-widest uppercase" style={{ color: "var(--muted-text)" }}>
+            <Link href="/" className="inline-block mb-6 text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">
               ← Back to Journal
             </Link>
           </motion.div>
-          <motion.p variants={fadeUp} className="text-sm tracking-[0.3em] uppercase mb-2" style={{ color: "var(--accent)" }}>
+          <motion.p variants={fadeUp} className="text-sm tracking-[0.3em] uppercase mb-3" style={{ color: '#c4882a' }}>
             #EastCoastJetta &nbsp;·&nbsp; April 1 – May 15
           </motion.p>
-          <motion.h1 variants={fadeUp} className="text-4xl md:text-6xl lg:text-7xl mb-4" style={{ fontFamily: "'Playfair Display', serif", color: "var(--heading-color)" }}>
+          <motion.h1 variants={fadeUp} className="text-4xl md:text-6xl lg:text-7xl mb-4 text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
             Road Trip 2019 Stats
           </motion.h1>
+          <motion.p variants={fadeUp} className="text-white/70 text-lg md:text-xl">
+            45 Days · 9,281 Miles · 29 States
+          </motion.p>
         </motion.div>
       </section>
 
