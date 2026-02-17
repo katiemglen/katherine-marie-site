@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
 import { fadeInScale, staggerContainer, defaultTransition } from '@/lib/animations';
 import TiltCard from '../TiltCard';
+import ProgressiveImage from '../ProgressiveImage';
 
 interface Props {
   images: string[];
@@ -27,7 +28,7 @@ export default function TwoColumnStagger({ images, onImageClick }: Props) {
           transition={defaultTransition}
         >
           <TiltCard className="cursor-pointer overflow-hidden rounded-xl will-animate relative group">
-            <img src={wpImage(src, IMG_SIZES.gallery)} alt="" loading="lazy" className="w-full hover:scale-105 transition-transform duration-500" onClick={() => onImageClick(i)} />
+            <ProgressiveImage src={wpImage(src, IMG_SIZES.gallery)} alt="" className="w-full hover:scale-105 transition-transform duration-500" onClick={() => onImageClick(i)} />
           </TiltCard>
         </motion.div>
       ))}

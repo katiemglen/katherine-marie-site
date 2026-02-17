@@ -43,7 +43,7 @@ export function ShellEasterEgg({ fact }: { fact: string }) {
 // Long hover shake — photo shakes after 3s hover
 export function ShakeOnLongHover({ children }: { children: React.ReactNode }) {
   const [shaking, setShaking] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const startHover = useCallback(() => {
     timerRef.current = setTimeout(() => setShaking(true), 3000);
@@ -57,18 +57,12 @@ export function ShakeOnLongHover({ children }: { children: React.ReactNode }) {
     <div
       onMouseEnter={startHover}
       onMouseLeave={endHover}
-      className={shaking ? 'animate-wiggle' : ''}
-      style={{ display: 'contents' }}
+      style={{
+        display: 'contents',
+        animation: shaking ? 'wiggle 0.3s ease-in-out 3' : 'none',
+      }}
     >
       {children}
-      <style jsx global>{`
-        @keyframes wiggle {
-          0%, 100% { transform: rotate(0deg); }
-          25% { transform: rotate(-1.5deg); }
-          75% { transform: rotate(1.5deg); }
-        }
-        .animate-wiggle { animation: wiggle 0.3s ease-in-out 3; display: block !important; }
-      `}</style>
     </div>
   );
 }

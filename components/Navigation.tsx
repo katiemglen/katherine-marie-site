@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/trips/west-coast-2016', label: 'West Coast' },
   { href: '/trips/east-coast-2019', label: 'East Coast' },
+  { href: '/moods', label: 'Moods' },
   { href: '/stats', label: 'Stats' },
 ];
 

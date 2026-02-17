@@ -16,6 +16,9 @@ import SingleFullBleed from './gallery/SingleFullBleed';
 import ThreeUpGrid from './gallery/ThreeUpGrid';
 import Lightbox from './gallery/Lightbox';
 import SectionProgress from './SectionProgress';
+import AuroraMesh from './AuroraMesh';
+import DustMotes from './DustMotes';
+import { ShellEasterEgg, ShakeOnLongHover, KatieSaysPopup } from './EasterEgg';
 
 interface PostData {
   title: string;
@@ -78,16 +81,20 @@ export default function MagazinePost({ post, next, prev }: Props) {
 
   const heroImage = post.images[0];
   const supportingImages = post.images.slice(1, 5);
+  const isSeaLife = post.slug === 'sea-life-beach-towns-sunsets';
 
   return (
     <article className="-mt-48 md:-mt-56">
       {heroImage && (
-        <HeroSection
-          image={heroImage}
-          title={post.title}
-          date={post.date}
-          categories={post.categories}
-        />
+        <div className="relative">
+          <HeroSection
+            image={heroImage}
+            title={post.title}
+            date={post.date}
+            categories={post.categories}
+          />
+          <DustMotes />
+        </div>
       )}
 
       {supportingImages.length > 0 && (
@@ -149,6 +156,9 @@ export default function MagazinePost({ post, next, prev }: Props) {
               contentVisibility: si > 0 ? 'auto' : undefined,
             } as React.CSSProperties}
           >
+            {/* Aurora mesh between sections */}
+            {si > 0 && si % 2 === 0 && <AuroraMesh />}
+
             <motion.div
               className="max-w-3xl mx-auto px-6 md:px-8 py-12 md:py-16"
               initial="hidden"
@@ -164,6 +174,10 @@ export default function MagazinePost({ post, next, prev }: Props) {
                   transition={textTransition}
                 >
                   {section.heading}
+                  {/* Easter egg: shell in first heading of sea-life post */}
+                  {isSeaLife && si === 1 && (
+                    <ShellEasterEgg fact="🦀 Florida has over 1,350 miles of coastline!" />
+                  )}
                 </motion.h2>
               )}
 
@@ -183,8 +197,19 @@ export default function MagazinePost({ post, next, prev }: Props) {
               ))}
 
               {section.galleries.map((gallery, gi) => (
-                <GalleryRenderer key={gi} gallery={gallery} onImageClick={openLightbox} />
+                isSeaLife && si === 0 && gi === 0 ? (
+                  <ShakeOnLongHover key={gi}>
+                    <GalleryRenderer gallery={gallery} onImageClick={openLightbox} />
+                  </ShakeOnLongHover>
+                ) : (
+                  <GalleryRenderer key={gi} gallery={gallery} onImageClick={openLightbox} />
+                )
               ))}
+
+              {/* Katie says popup on section 3 of sea-life post */}
+              {isSeaLife && si === 3 && (
+                <KatieSaysPopup message="This sunset was one of the most beautiful things I've ever seen. We almost missed it because Chad wanted to find a gas station first 😂" />
+              )}
             </motion.div>
           </section>
         ))}

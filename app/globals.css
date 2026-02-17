@@ -41,6 +41,11 @@
   /* Emphasis */
   --em-color: #c4882a;
   --strong-color: #2c2418;
+
+  /* Aurora mesh */
+  --aurora-1: rgba(210, 190, 160, 0.4);
+  --aurora-2: rgba(180, 200, 170, 0.3);
+  --aurora-3: rgba(200, 170, 160, 0.3);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -84,6 +89,11 @@
   /* Emphasis */
   --em-color: #e8a838;
   --strong-color: #e6e2d9;
+
+  /* Aurora mesh */
+  --aurora-1: rgba(80, 70, 50, 0.4);
+  --aurora-2: rgba(50, 70, 55, 0.3);
+  --aurora-3: rgba(70, 50, 50, 0.3);
 }
 
 :root {
@@ -406,4 +416,10 @@ img[loading="lazy"] {
     transform: translateY(-120px) translateX(var(--drift, 10px));
     opacity: 0;
   }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-1.5deg); }
+  75% { transform: rotate(1.5deg); }
 }
