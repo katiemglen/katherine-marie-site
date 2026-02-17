@@ -42,15 +42,33 @@ export default function Home() {
   // Featured story — Easter Sunday
   const easterPost = posts.find((p) => p.slug === 'easter-sunday');
 
-  // Photo mosaic — pick every ~5th post for diversity
-  const mosaicData = posts
-    .filter((_, i) => i % 5 === 0)
-    .slice(0, 16)
-    .map((p) => ({
+  // Photo mosaic — hand-curated nature, sunlight, adventure (no people)
+  const mosaicPicks: Array<{ slug: string; imageIndex: number }> = [
+    { slug: 'that-is-what-mountains-look-like', imageIndex: 2 },
+    { slug: 'blue-ridge', imageIndex: 5 },
+    { slug: 'civil-war', imageIndex: 15 },
+    { slug: 'peggys-cove', imageIndex: 0 },
+    { slug: 'peggys-cove', imageIndex: 10 },
+    { slug: 'florida-keys-day-trip', imageIndex: 8 },
+    { slug: 'sea-life-beach-towns-sunsets', imageIndex: 20 },
+    { slug: 'easter-sunday', imageIndex: 5 },
+    { slug: 'maine-lobster', imageIndex: 10 },
+    { slug: 'welcome-to-savannah', imageIndex: 8 },
+    { slug: 'welcome-to-the-gilded-age', imageIndex: 15 },
+    { slug: 'the-nations-front-lawn', imageIndex: 20 },
+    { slug: 'new-orleans-food-music', imageIndex: 10 },
+    { slug: 'southern-friends-trees-coffee', imageIndex: 5 },
+    { slug: 'myakka-state-park-cats', imageIndex: 10 },
+    { slug: 'st-augustine-beaches', imageIndex: 15 },
+  ];
+  const mosaicData = mosaicPicks.map((pick) => {
+    const p = posts.find((x) => x.slug === pick.slug);
+    return p ? {
       slug: p.slug,
       title: p.title,
-      image: wpImage(p.images[0], IMG_SIZES.gallery),
-    }));
+      image: wpImage(p.images[pick.imageIndex] || p.images[0], IMG_SIZES.gallery),
+    } : null;
+  }).filter(Boolean) as Array<{ slug: string; title: string; image: string }>;
 
   // Recent posts — last 8
   const recent = [...posts].reverse().slice(0, 8).map((p) => ({

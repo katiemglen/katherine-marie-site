@@ -109,7 +109,7 @@ export default function Navigation() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
               style={{
-                width: 130,
+                width: 156,
                 height: 'auto',
                 filter: theme === 'dark' ? 'brightness(0) invert(1)' : 'none',
               }}
@@ -190,7 +190,7 @@ export default function Navigation() {
             <img
               src="/images/logo-rectangle.png"
               alt="Katherine Marie"
-              className="h-[40px] md:h-[50px] w-auto"
+              className="h-[48px] md:h-[60px] w-auto"
               style={{
                 filter: (isTransparent || theme === 'dark') ? 'brightness(0) invert(1)' : 'none',
               }}

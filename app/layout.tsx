@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <img
                 src="/images/logo-rectangle.png"
                 alt="Katherine Marie — Adventure Memories"
-                className="w-[180px] h-auto"
+                className="w-[216px] h-auto"
                 style={{ filter: 'var(--footer-logo-filter, none)' }}
               />
 
