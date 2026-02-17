@@ -11,8 +11,8 @@ interface EmojiParticle {
   id: number;
   emoji: string;
   x: number;
-  startY: number;
-  offset: number;
+  drift: number;
+  delay: number;
 }
 
 let emojiId = 0;
@@ -41,12 +41,12 @@ export default function FloatingEmoji({ emoji, children }: FloatingEmojiProps) {
               id: emojiId++,
               emoji: emoji[Math.floor(Math.random() * emoji.length)],
               x: 5 + Math.random() * 90,
-              startY: 0,
-              offset: Math.random() * 500,
+              drift: (Math.random() - 0.5) * 40,
+              delay: Math.random() * 500,
             });
           }
           setParticles(newParticles);
-          setTimeout(() => setParticles([]), 2500);
+          setTimeout(() => setParticles([]), 3000);
         }
       },
       { threshold: 0.3 }
@@ -57,33 +57,23 @@ export default function FloatingEmoji({ emoji, children }: FloatingEmojiProps) {
   }, [isDesktop, emoji]);
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative overflow-hidden">
       {children}
       {particles.map((p) => (
         <span
           key={p.id}
-          className="absolute pointer-events-none text-2xl z-40"
+          className="absolute pointer-events-none text-2xl z-40 animate-[floatUp_2s_ease-out_forwards]"
           style={{
             left: `${p.x}%`,
             bottom: 0,
-            animation: `floatUp 2s ease-out ${p.offset}ms forwards`,
+            animationDelay: `${p.delay}ms`,
+            opacity: 0,
+            ['--drift' as string]: `${p.drift}px`,
           }}
         >
           {p.emoji}
         </span>
       ))}
-      <style jsx>{`
-        @keyframes floatUp {
-          0% {
-            transform: translateY(0) translateX(0);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-120px) translateX(${Math.random() > 0.5 ? '' : '-'}${10 + Math.random() * 20}px);
-            opacity: 0;
-          }
-        }
-      `}</style>
     </div>
   );
 }

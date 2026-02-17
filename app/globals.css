@@ -395,3 +395,15 @@ img[loading="lazy"] {
   nav a::before { transition: none !important; }
   .glass.rounded-2xl:hover { transform: translateY(-4px); }
 }
+
+/* Floating Emoji Animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) translateX(var(--drift, 10px));
+    opacity: 0;
+  }
+}

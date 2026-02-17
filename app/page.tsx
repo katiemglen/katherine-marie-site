@@ -84,7 +84,7 @@ export default function Home() {
   }));
 
   // Closing CTA — open road shot from West Coast
-  const closingImage = '/images/1032/20170102_081704.jpg';
+  const closingImage = '/images/a-drive-through-a-giants-land/20170102_081704.jpg';
 
   return (
     <div>
