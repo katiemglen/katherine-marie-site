@@ -125,6 +125,77 @@ export function parseWordPressContent(html: string, _images: string[]): ParsedCo
     pieces.push({ type: 'html', html: trimmed });
   }
 
+  // Step 2.5: Post-process HTML pieces - split long paragraphs, add image classes
+  let inlineImageCount = 0;
+  let firstImageFound = false;
+  
+  for (let i = 0; i < pieces.length; i++) {
+    if (pieces[i].type === 'html') {
+      let html = (pieces[i] as { type: 'html'; html: string }).html;
+      
+      // Split long paragraphs at sentence boundaries
+      html = html.replace(/<p>([\s\S]*?)<\/p>/g, (_match, content: string) => {
+        const text = content.replace(/<[^>]+>/g, '');
+        if (text.length > 500) {
+          const mid = Math.floor(text.length / 2);
+          // Find nearest ". " to midpoint in the original content
+          let bestSplit = -1;
+          let bestDist = Infinity;
+          const sentenceEnd = /\.\s/g;
+          let m;
+          // Search in stripped text for position, then map back
+          while ((m = sentenceEnd.exec(text)) !== null) {
+            const dist = Math.abs(m.index - mid);
+            if (dist < bestDist) {
+              bestDist = dist;
+              bestSplit = m.index;
+            }
+          }
+          if (bestSplit > 50 && bestSplit < text.length - 50) {
+            // Find the corresponding position in the HTML content
+            let textPos = 0;
+            let htmlPos = 0;
+            let inTag = false;
+            while (htmlPos < content.length && textPos <= bestSplit) {
+              if (content[htmlPos] === '<') inTag = true;
+              else if (content[htmlPos] === '>') inTag = false;
+              else if (!inTag) textPos++;
+              htmlPos++;
+              if (textPos === bestSplit + 1) break;
+            }
+            // Find the ". " in content near htmlPos
+            const dotIdx = content.indexOf('. ', Math.max(0, htmlPos - 5));
+            if (dotIdx > 0 && dotIdx < content.length - 20) {
+              const splitAt = dotIdx + 1;
+              return `<p>${content.slice(0, splitAt).trim()}</p><p>${content.slice(splitAt).trim()}</p>`;
+            }
+          }
+        }
+        return `<p>${content}</p>`;
+      });
+      
+      // Add classes to images: hero-pull for first, film-strip for every 3rd
+      html = html.replace(/<img([^>]*)>/g, (match, attrs: string) => {
+        inlineImageCount++;
+        const classes: string[] = [];
+        if (!firstImageFound) {
+          firstImageFound = true;
+          classes.push('hero-pull-image');
+        }
+        if (inlineImageCount % 3 === 0) {
+          classes.push('film-strip');
+        }
+        // Add data attribute for lightbox
+        const imgTag = classes.length > 0
+          ? `<img class="${classes.join(' ')}" data-content-image="true"${attrs}>`
+          : `<img data-content-image="true"${attrs}>`;
+        return imgTag;
+      });
+      
+      (pieces[i] as { type: 'html'; html: string }).html = html;
+    }
+  }
+
   // Step 3: group into sections (split at headings)
   const sections: ContentSection[] = [];
   let current: ContentSection = { paragraphs: [], galleries: [], videos: [] };

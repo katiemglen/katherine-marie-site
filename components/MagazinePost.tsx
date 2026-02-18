@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { parseWordPressContent, type GalleryBlock } from '@/lib/parseContent';
 import { wpImage, IMG_SIZES } from '@/lib/optimizeImage';
@@ -79,6 +79,37 @@ export default function MagazinePost({ post, next, prev }: Props) {
     [parsed.sections]
   );
 
+  // Collect all content images for lightbox
+  const contentImages = useMemo(() => {
+    const imgs: string[] = [];
+    const imgRegex = /<img[^>]+src=["']([^"']+)["']/g;
+    for (const section of parsed.sections) {
+      for (const p of section.paragraphs) {
+        let m;
+        while ((m = imgRegex.exec(p)) !== null) {
+          imgs.push(m[1]);
+        }
+      }
+    }
+    return imgs;
+  }, [parsed.sections]);
+
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Wire up click handlers on content images for lightbox
+  useEffect(() => {
+    if (!contentRef.current) return;
+    const imgs = contentRef.current.querySelectorAll('img[data-content-image]');
+    const handler = (e: Event) => {
+      const img = e.currentTarget as HTMLImageElement;
+      const src = img.src;
+      const idx = contentImages.findIndex(u => src.includes(u) || u.includes(new URL(src).pathname));
+      openLightbox(contentImages, idx >= 0 ? idx : 0);
+    };
+    imgs.forEach(img => img.addEventListener('click', handler));
+    return () => { imgs.forEach(img => img.removeEventListener('click', handler)); };
+  }, [contentImages, openLightbox]);
+
   const heroImage = post.images[0];
   const supportingImages = post.images.slice(1, 5);
   const isSeaLife = post.slug === 'sea-life-beach-towns-sunsets';
@@ -145,7 +176,7 @@ export default function MagazinePost({ post, next, prev }: Props) {
       <SectionProgress sections={progressSections} lightboxOpen={!!lightbox} />
 
       
-      <div style={{ viewTransitionName: 'post-content' }}>
+      <div ref={contentRef} style={{ viewTransitionName: 'post-content' }}>
         {parsed.sections.map((section, si) => (
           <section
             key={si}
@@ -184,7 +215,7 @@ export default function MagazinePost({ post, next, prev }: Props) {
               {section.paragraphs.map((html, pi) => (
                 <motion.div
                   key={pi}
-                  className="text-base md:text-lg leading-[1.85] mb-4 [&_p]:mb-4 [&_a]:underline [&_a]:underline-offset-2 will-animate"
+                  className="prose-custom text-base md:text-lg leading-[1.85] mb-4 [&_p]:mb-[1.5em] [&_a]:underline [&_a]:underline-offset-2 will-animate"
                   style={{ color: 'var(--foreground)', opacity: 0.8 }}
                   variants={fadeUp}
                   transition={textTransition}
