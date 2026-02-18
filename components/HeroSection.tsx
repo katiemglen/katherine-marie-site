@@ -22,7 +22,7 @@ export default function HeroSection({ image, title, date, categories }: Props) {
       <img
         src={wpImage(image, IMG_SIZES.hero)}
         alt={title}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-center"
         loading="eager"
       />
       {/* Gradient overlay — same in both themes for readability */}

@@ -182,9 +182,7 @@ export function parseWordPressContent(html: string, _images: string[]): ParsedCo
           firstImageFound = true;
           classes.push('hero-pull-image');
         }
-        if (inlineImageCount % 3 === 0) {
-          classes.push('film-strip');
-        }
+        // film-strip removed — caused confusing white borders
         // Add data attribute for lightbox
         const imgTag = classes.length > 0
           ? `<img class="${classes.join(' ')}" data-content-image="true"${attrs}>`

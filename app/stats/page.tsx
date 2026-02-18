@@ -33,7 +33,15 @@ export default function StatsPage() {
             background: "linear-gradient(135deg, rgba(var(--accent-rgb), 0.08) 0%, transparent 50%, rgba(var(--accent-rgb), 0.05) 100%)",
           }}
         />
-        <div className="relative z-10 text-center px-6 pt-32 pb-12">
+        <div
+          className="relative z-10 text-center px-8 py-10 pt-32 rounded-2xl max-w-2xl mx-6"
+          style={{
+            background: 'var(--glass-bg)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid var(--glass-border)',
+          }}
+        >
           <p
             className="text-sm tracking-[0.3em] uppercase mb-3"
             style={{ color: "var(--accent)" }}
@@ -46,7 +54,7 @@ export default function StatsPage() {
           >
             Trip Stats
           </h1>
-          <p className="text-base md:text-lg max-w-xl mx-auto" style={{ color: "var(--muted-text)" }}>
+          <p className="text-base md:text-lg max-w-xl mx-auto" style={{ color: "var(--foreground)" }}>
             Every mile, every dollar, every questionable sleeping arrangement — all tracked.
           </p>
         </div>

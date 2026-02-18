@@ -13,7 +13,7 @@ export default function DustMotes() {
 
     let animId: number;
     const motes: { x: number; y: number; r: number; speed: number; sway: number; phase: number; opacity: number }[] = [];
-    const COUNT = 30;
+    const COUNT = 50;
 
     const resize = () => {
       canvas.width = canvas.offsetWidth;
@@ -26,11 +26,11 @@ export default function DustMotes() {
       motes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        r: Math.random() * 2 + 1,
-        speed: Math.random() * 0.15 + 0.05,
-        sway: Math.random() * 0.3 + 0.1,
+        r: Math.random() * 3 + 1.5,
+        speed: Math.random() * 0.2 + 0.08,
+        sway: Math.random() * 0.4 + 0.15,
         phase: Math.random() * Math.PI * 2,
-        opacity: Math.random() * 0.4 + 0.1,
+        opacity: Math.random() * 0.5 + 0.3,
       });
     }
 
@@ -38,7 +38,7 @@ export default function DustMotes() {
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const color = isDark() ? '210, 160, 60' : '196, 160, 80';
+      const color = isDark() ? '232, 180, 80' : '255, 220, 120';
       for (const m of motes) {
         m.y -= m.speed;
         m.x += Math.sin(m.phase) * m.sway;
@@ -64,7 +64,7 @@ export default function DustMotes() {
       ref={canvasRef}
       aria-hidden="true"
       className="absolute inset-0 w-full h-full pointer-events-none z-10"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.85 }}
     />
   );
 }
