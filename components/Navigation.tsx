@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeProvider';
+import SearchOverlay, { useSearchShortcut } from './SearchOverlay';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -14,6 +15,15 @@ const NAV_LINKS = [
   { href: '/moods', label: 'Moods' },
   { href: '/stats', label: 'Stats' },
 ];
+
+function SearchIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+  );
+}
 
 function ThemeIcon({ theme }: { theme: string }) {
   return (
@@ -48,6 +58,9 @@ export default function Navigation() {
   const { theme, toggleTheme } = useTheme();
   const [scrollY, setScrollY] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useSearchShortcut(() => setSearchOpen(true));
 
   const isPostPage = pathname.startsWith('/posts/');
   const isHomePage = pathname === '/';
@@ -138,15 +151,25 @@ export default function Navigation() {
             ))}
           </nav>
 
-          {/* Theme toggle right (desktop) */}
-          <button
-            onClick={toggleTheme}
-            className="hidden md:flex items-center justify-center w-9 h-9 shrink-0 cursor-pointer"
-            style={{ color: 'var(--muted-text)' }}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          >
-            <ThemeIcon theme={theme} />
-          </button>
+          {/* Search + Theme toggle right (desktop) */}
+          <div className="hidden md:flex items-center gap-1 shrink-0">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center justify-center w-9 h-9 cursor-pointer"
+              style={{ color: 'var(--muted-text)' }}
+              aria-label="Search"
+            >
+              <SearchIcon />
+            </button>
+            <button
+              onClick={toggleTheme}
+              className="flex items-center justify-center w-9 h-9 cursor-pointer"
+              style={{ color: 'var(--muted-text)' }}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              <ThemeIcon theme={theme} />
+            </button>
+          </div>
 
           {/* Mobile hamburger right */}
           <button
@@ -160,7 +183,8 @@ export default function Navigation() {
           </button>
         </motion.header>
 
-        <MobileOverlay open={mobileOpen} onClose={() => setMobileOpen(false)} pathname={pathname} theme={theme} toggleTheme={toggleTheme} />
+        <MobileOverlay open={mobileOpen} onClose={() => setMobileOpen(false)} pathname={pathname} theme={theme} toggleTheme={toggleTheme} onSearchOpen={() => { setMobileOpen(false); setSearchOpen(true); }} />
+        <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
       </>
     );
   }

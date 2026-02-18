@@ -128,7 +128,9 @@ export function parseWordPressContent(html: string, _images: string[]): ParsedCo
 
   // Step 2.5: Post-process HTML pieces - split long paragraphs, add image classes
   let inlineImageCount = 0;
-  let firstImageFound = false;
+  
+  // Alternating tier pattern: full → wide → text → wide → full...
+  const tierPattern = ['image-full-width', 'image-wide', 'image-text-width', 'image-wide'];
   
   for (let i = 0; i < pieces.length; i++) {
     if (pieces[i].type === 'html') {
@@ -175,20 +177,11 @@ export function parseWordPressContent(html: string, _images: string[]): ParsedCo
         return `<p>${content}</p>`;
       });
       
-      // Add classes to images: hero-pull for first, film-strip for every 3rd
-      html = html.replace(/<img([^>]*)>/g, (match, attrs: string) => {
+      // Add breakout tier classes to images (alternating pattern)
+      html = html.replace(/<img([^>]*)>/g, (_match, attrs: string) => {
+        const tierClass = tierPattern[inlineImageCount % tierPattern.length];
         inlineImageCount++;
-        const classes: string[] = [];
-        if (!firstImageFound) {
-          firstImageFound = true;
-          classes.push('hero-pull-image');
-        }
-        // film-strip removed — caused confusing white borders
-        // Add data attribute for lightbox
-        const imgTag = classes.length > 0
-          ? `<img class="${classes.join(' ')}" data-content-image="true"${attrs}>`
-          : `<img data-content-image="true"${attrs}>`;
-        return imgTag;
+        return `<img class="${tierClass}" data-content-image="true"${attrs}>`;
       });
       
       (pieces[i] as { type: 'html'; html: string }).html = html;

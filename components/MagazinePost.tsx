@@ -246,15 +246,25 @@ export default function MagazinePost({ post, next, prev }: Props) {
                 <VideoSection key={vi} src={src} />
               ))}
 
-              {section.galleries.map((gallery, gi) => (
-                post.slug === 'sea-life-beach-towns-sunsets' && si === 0 && gi === 0 ? (
+              {section.galleries.map((gallery, gi) => {
+                // Determine gallery breakout wrapper class
+                const galleryWrapperClass =
+                  gallery.layout === 'bento' ? 'gallery-full-width' :
+                  gallery.layout === 'masonry' || gallery.layout === 'three-up' ? 'gallery-wide' :
+                  undefined; // two-column-stagger and single-full-bleed stay in text column
+
+                const rendered = post.slug === 'sea-life-beach-towns-sunsets' && si === 0 && gi === 0 ? (
                   <ShakeOnLongHover key={gi}>
                     <GalleryRenderer gallery={gallery} onImageClick={openLightbox} sectionIndex={si} />
                   </ShakeOnLongHover>
                 ) : (
                   <GalleryRenderer key={gi} gallery={gallery} onImageClick={openLightbox} sectionIndex={si} />
-                )
-              ))}
+                );
+
+                return galleryWrapperClass ? (
+                  <div key={gi} className={galleryWrapperClass}>{rendered}</div>
+                ) : rendered;
+              })}
 
               {/* Katie Says popup — data-driven per post */}
               {katieQuote && si === katieSaysSection && (
