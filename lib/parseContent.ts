@@ -1,4 +1,4 @@
-export type GalleryLayout = 'masonry' | 'two-column-stagger' | 'single-full-bleed' | 'three-up';
+export type GalleryLayout = 'masonry' | 'two-column-stagger' | 'single-full-bleed' | 'three-up' | 'bento';
 
 export interface GalleryBlock {
   images: string[];
@@ -20,7 +20,8 @@ function getLayout(count: number): GalleryLayout {
   if (count === 1) return 'single-full-bleed';
   if (count === 2) return 'two-column-stagger';
   if (count === 3) return 'three-up';
-  return 'masonry'; // 4+
+  if (count >= 6) return 'bento';
+  return 'masonry'; // 4-5
 }
 
 type ContentPiece =

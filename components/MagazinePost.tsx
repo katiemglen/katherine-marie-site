@@ -14,6 +14,7 @@ import MasonryGrid from './gallery/MasonryGrid';
 import TwoColumnStagger from './gallery/TwoColumnStagger';
 import SingleFullBleed from './gallery/SingleFullBleed';
 import ThreeUpGrid from './gallery/ThreeUpGrid';
+import BentoGrid from './gallery/BentoGrid';
 import Lightbox from './gallery/Lightbox';
 import SectionProgress from './SectionProgress';
 import AuroraMesh from './AuroraMesh';
@@ -43,10 +44,12 @@ interface Props {
   prev: PostTeaser | null;
 }
 
-function GalleryRenderer({ gallery, onImageClick }: { gallery: GalleryBlock; onImageClick: (images: string[], index: number) => void }) {
+function GalleryRenderer({ gallery, onImageClick, sectionIndex = 0 }: { gallery: GalleryBlock; onImageClick: (images: string[], index: number) => void; sectionIndex?: number }) {
   const handler = (i: number) => onImageClick(gallery.images, i);
 
   switch (gallery.layout) {
+    case 'bento':
+      return <BentoGrid images={gallery.images} onImageClick={handler} sectionIndex={sectionIndex} />;
     case 'masonry':
       return <MasonryGrid images={gallery.images} onImageClick={handler} />;
     case 'two-column-stagger':
@@ -246,10 +249,10 @@ export default function MagazinePost({ post, next, prev }: Props) {
               {section.galleries.map((gallery, gi) => (
                 post.slug === 'sea-life-beach-towns-sunsets' && si === 0 && gi === 0 ? (
                   <ShakeOnLongHover key={gi}>
-                    <GalleryRenderer gallery={gallery} onImageClick={openLightbox} />
+                    <GalleryRenderer gallery={gallery} onImageClick={openLightbox} sectionIndex={si} />
                   </ShakeOnLongHover>
                 ) : (
-                  <GalleryRenderer key={gi} gallery={gallery} onImageClick={openLightbox} />
+                  <GalleryRenderer key={gi} gallery={gallery} onImageClick={openLightbox} sectionIndex={si} />
                 )
               ))}
 
