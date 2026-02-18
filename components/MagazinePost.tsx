@@ -19,6 +19,7 @@ import SectionProgress from './SectionProgress';
 import AuroraMesh from './AuroraMesh';
 import DustMotes from './DustMotes';
 import { ShellEasterEgg, ShakeOnLongHover, KatieSaysPopup } from './EasterEgg';
+import { KATIE_QUOTES } from '@/lib/katieQuotes';
 
 interface PostData {
   title: string;
@@ -113,6 +114,8 @@ export default function MagazinePost({ post, next, prev }: Props) {
   const heroImage = post.images[0];
   const supportingImages = post.images.slice(1, 5);
   const isSeaLife = post.slug === 'sea-life-beach-towns-sunsets';
+  const katieQuote = KATIE_QUOTES[post.slug];
+  const katieSaysSection = parsed.sections.length > 2 ? 2 : Math.min(1, parsed.sections.length - 1);
 
   return (
     <article className="-mt-48 md:-mt-56">
@@ -237,9 +240,9 @@ export default function MagazinePost({ post, next, prev }: Props) {
                 )
               ))}
 
-              {/* Katie says popup on section 3 of sea-life post */}
-              {isSeaLife && si === 3 && (
-                <KatieSaysPopup message="This sunset was one of the most beautiful things I've ever seen. We almost missed it because Chad wanted to find a gas station first 😂" />
+              {/* Katie Says popup — data-driven per post */}
+              {katieQuote && si === katieSaysSection && (
+                <KatieSaysPopup message={katieQuote} />
               )}
             </motion.div>
           </section>
