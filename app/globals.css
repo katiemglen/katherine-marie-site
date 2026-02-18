@@ -59,9 +59,9 @@
   --nav-bg: rgba(11, 16, 14, 0.92);
 
   /* Text */
-  --foreground: #e6e2d9;
-  --muted-text: #9a9080;
-  --heading-color: #e6e2d9;
+  --foreground: #f0ece4;
+  --muted-text: #b0a590;
+  --heading-color: #ffffff;
 
   /* Accent — warm amber */
   --accent: #e8a838;
@@ -80,7 +80,7 @@
   --category-border: rgba(232, 168, 56, 0.2);
 
   /* Links */
-  --link-color: #e8a838;
+  --link-color: #f0ece4;
 
   /* Blockquotes */
   --blockquote-border: #e8a838;
@@ -88,7 +88,7 @@
 
   /* Emphasis */
   --em-color: #e8a838;
-  --strong-color: #e6e2d9;
+  --strong-color: #ffffff;
 
   /* Aurora mesh */
   --aurora-1: rgba(80, 70, 50, 0.4);
