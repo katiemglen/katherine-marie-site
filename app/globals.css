@@ -501,3 +501,45 @@ img[loading="lazy"] {
   25% { transform: rotate(-1.5deg); }
   75% { transform: rotate(1.5deg); }
 }
+
+/* Beard progression grid */
+.beard-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 2em auto;
+  max-width: 900px;
+}
+.beard-grid figure {
+  margin: 0;
+  text-align: center;
+}
+.beard-grid img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.beard-grid figcaption {
+  font-size: 0.75rem;
+  margin-top: 6px;
+  color: var(--muted-text);
+  font-style: italic;
+}
+@media (max-width: 640px) {
+  .beard-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 100%;
+  }
+  .beard-grid figure:nth-child(4),
+  .beard-grid figure:nth-child(5) {
+    grid-column: span 1;
+  }
+}
+@media (max-width: 400px) {
+  .beard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
