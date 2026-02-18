@@ -96,10 +96,8 @@
   --aurora-3: rgba(70, 50, 50, 0.3);
 }
 
-:root {
-  --background: #faf5ee;
-  --foreground: #2c2418;
-}
+/* Removed :root overrides — theme variables now controlled exclusively 
+   by [data-theme="light"] and [data-theme="dark"] selectors */
 
 *, *::before, *::after {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
