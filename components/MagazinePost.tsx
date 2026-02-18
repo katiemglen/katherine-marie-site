@@ -20,6 +20,7 @@ import AuroraMesh from './AuroraMesh';
 import DustMotes from './DustMotes';
 import { ShellEasterEgg, ShakeOnLongHover, KatieSaysPopup } from './EasterEgg';
 import { KATIE_QUOTES } from '@/lib/katieQuotes';
+import { POST_EASTER_EGGS } from '@/lib/easterEggs';
 
 interface PostData {
   title: string;
@@ -113,9 +114,19 @@ export default function MagazinePost({ post, next, prev }: Props) {
 
   const heroImage = post.images[0];
   const supportingImages = post.images.slice(1, 5);
-  const isSeaLife = post.slug === 'sea-life-beach-towns-sunsets';
   const katieQuote = KATIE_QUOTES[post.slug];
   const katieSaysSection = parsed.sections.length > 2 ? 2 : Math.min(1, parsed.sections.length - 1);
+
+  // Easter egg placement: distribute 3 eggs across sections
+  const easterEggs = POST_EASTER_EGGS[post.slug] || [];
+  const eggSections = useMemo(() => {
+    const total = parsed.sections.length;
+    if (total <= 1) return [0, 0, 0];
+    if (total <= 3) return [0, Math.min(1, total - 1), total - 1];
+    const mid = Math.floor(total / 2);
+    const late = Math.floor(total * 0.75);
+    return [Math.min(1, total - 1), mid, late];
+  }, [parsed.sections.length]);
 
   return (
     <article className="-mt-48 md:-mt-56">
@@ -208,9 +219,11 @@ export default function MagazinePost({ post, next, prev }: Props) {
                   transition={textTransition}
                 >
                   {section.heading}
-                  {/* Easter egg: shell in first heading of sea-life post */}
-                  {isSeaLife && si === 1 && (
-                    <ShellEasterEgg fact="🦀 Florida has over 1,350 miles of coastline!" />
+                  {/* Easter eggs: themed emoji per post */}
+                  {easterEggs.map((egg, ei) =>
+                    eggSections[ei] === si ? (
+                      <ShellEasterEgg key={ei} emoji={egg.emoji} fact={egg.fact} />
+                    ) : null
                   )}
                 </motion.h2>
               )}
@@ -231,7 +244,7 @@ export default function MagazinePost({ post, next, prev }: Props) {
               ))}
 
               {section.galleries.map((gallery, gi) => (
-                isSeaLife && si === 0 && gi === 0 ? (
+                post.slug === 'sea-life-beach-towns-sunsets' && si === 0 && gi === 0 ? (
                   <ShakeOnLongHover key={gi}>
                     <GalleryRenderer gallery={gallery} onImageClick={openLightbox} />
                   </ShakeOnLongHover>

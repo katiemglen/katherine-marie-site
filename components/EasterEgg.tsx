@@ -3,8 +3,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Shell easter egg — click to reveal fun fact
-export function ShellEasterEgg({ fact }: { fact: string }) {
+// Emoji easter egg — click to reveal fun fact
+export function ShellEasterEgg({ fact, emoji = '🐚' }: { fact: string; emoji?: string }) {
   const [revealed, setRevealed] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ export function ShellEasterEgg({ fact }: { fact: string }) {
         style={{ background: 'none', border: 'none', padding: '0 2px' }}
         aria-label="Discover a fun fact"
       >
-        🐚
+        {emoji}
       </button>
       <AnimatePresence>
         {revealed && (
