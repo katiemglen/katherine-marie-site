@@ -6,6 +6,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 import Navigation from "@/components/Navigation";
 import ScrollToTop from "@/components/ScrollToTop";
 import CursorSparkle from "@/components/CursorSparkle";
+import WelcomePopup from "@/components/WelcomePopup";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 
 const FOOTER_LINKS = [
   { href: '/', label: 'Home' },
+  { href: '/welcome', label: 'Welcome' },
   { href: '/trips/west-coast-2016', label: 'West Coast' },
   { href: '/trips/east-coast-2019', label: 'East Coast' },
   { href: '/moods', label: 'Moods' },
@@ -48,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${playfair.variable} ${inter.variable} font-[family-name:var(--font-inter)] antialiased min-h-screen`}>
         <ThemeProvider>
           <Navigation />
+          <WelcomePopup />
           <main className="min-h-screen">{children}</main>
           <footer className="relative py-12 md:py-16" style={{ color: 'var(--muted-text)' }}>
             <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'color-mix(in srgb, var(--accent) 8%, transparent)' }} />

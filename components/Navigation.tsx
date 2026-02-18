@@ -8,6 +8,7 @@ import { useTheme } from './ThemeProvider';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
+  { href: '/welcome', label: 'Welcome' },
   { href: '/trips/west-coast-2016', label: 'West Coast' },
   { href: '/trips/east-coast-2019', label: 'East Coast' },
   { href: '/moods', label: 'Moods' },
