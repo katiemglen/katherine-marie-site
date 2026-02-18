@@ -75,8 +75,8 @@ export default function Home() {
     } : null;
   }).filter(Boolean) as Array<{ slug: string; title: string; image: string; mood: { emoji: string; label: string } }>;
 
-  // Recent posts — last 8
-  const recent = [...posts].reverse().slice(0, 8).map((p) => ({
+  // Recent posts — last 15
+  const recent = [...posts].reverse().slice(0, 15).map((p) => ({
     slug: p.slug,
     title: p.title,
     date: p.date,
