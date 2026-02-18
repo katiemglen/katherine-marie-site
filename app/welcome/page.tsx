@@ -16,7 +16,7 @@ const features = [
   { emoji: '🗺️', title: 'Two Epic Road Trips', desc: '20 days across the West Coast (2016) and 45 days up the East Coast (2019). Every state, every meal, every time I killed the manual car.' },
   { emoji: '📊', title: 'Trip Stats', desc: 'Miles driven, money spent, showers taken (or not taken). The numbers don\'t lie.' },
   { emoji: '🎭', title: 'Browse by Mood', desc: 'Feeling beachy? Mountain-y? Hungry? Browse posts by vibe.' },
-  { emoji: '📸', title: '73 Blog Posts', desc: 'Over 2,600 photos from the road. Chad\'s photography. My commentary. A match made in road trip heaven.' },
+  { emoji: '📸', title: '73 Blog Posts', desc: 'Chad and Katie\'s photography. My commentary with snippets of Chad quotes. A match made in road trip heaven.' },
 ];
 
 const secrets = [

@@ -502,44 +502,46 @@ img[loading="lazy"] {
   75% { transform: rotate(1.5deg); }
 }
 
-/* Beard progression grid */
-.beard-grid {
+/* Beard bento grid */
+.beard-bento {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 6px;
   margin: 2em auto;
   max-width: 900px;
 }
-.beard-grid figure {
-  margin: 0;
-  text-align: center;
-}
-.beard-grid img {
+.beard-bento img {
   width: 100%;
   aspect-ratio: 3/4;
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
-.beard-grid figcaption {
-  font-size: 0.75rem;
-  margin-top: 6px;
-  color: var(--muted-text);
-  font-style: italic;
+.beard-bento img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+/* Row 1: 3 images. Row 2: 2 images centered */
+.beard-bento img:nth-child(4) {
+  grid-column: 1 / 2;
+  justify-self: end;
+  width: 90%;
+}
+.beard-bento img:nth-child(5) {
+  grid-column: 2 / 3;
+  justify-self: start;
+  width: 90%;
 }
 @media (max-width: 640px) {
-  .beard-grid {
+  .beard-bento {
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    max-width: 100%;
+    gap: 4px;
   }
-  .beard-grid figure:nth-child(4),
-  .beard-grid figure:nth-child(5) {
-    grid-column: span 1;
-  }
-}
-@media (max-width: 400px) {
-  .beard-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .beard-bento img:nth-child(4),
+  .beard-bento img:nth-child(5) {
+    width: 100%;
+    justify-self: auto;
   }
 }
