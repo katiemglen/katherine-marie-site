@@ -64,6 +64,8 @@ export default function Home() {
     { slug: 'southern-friends-trees-coffee', imageIndex: 5 },
     { slug: 'myakka-state-park-cats', imageIndex: 10 },
     { slug: 'st-augustine-beaches', imageIndex: 15 },
+    { slug: 'hot-showers-in-acadia-national-park', imageIndex: 5 },
+    { slug: 'old-city-of-quebec', imageIndex: 8 },
   ];
   const mosaicData = mosaicPicks.map((pick) => {
     const p = posts.find((x) => x.slug === pick.slug);
