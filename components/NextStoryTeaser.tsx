@@ -21,7 +21,7 @@ export default function NextStoryTeaser({ next, prev }: Props) {
     <div className="mt-16">
       {prev && (
         <div className="mb-4 text-center">
-          <TransitionLink href={`/posts/${prev.slug}`} className="hover:text-[var(--accent)] transition text-sm" style={{ color: 'var(--link-color)' }}>
+          <TransitionLink href={`/posts/${prev.slug}`} className="hover:text-[var(--accent)] transition text-sm" style={{ color: 'var(--heading-color)' }}>
             ← Previous: {prev.title}
           </TransitionLink>
         </div>

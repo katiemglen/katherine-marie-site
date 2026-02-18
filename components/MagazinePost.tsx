@@ -216,7 +216,7 @@ export default function MagazinePost({ post, next, prev }: Props) {
                 <motion.div
                   key={pi}
                   className="prose-custom text-base md:text-lg leading-[1.85] mb-4 [&_p]:mb-[1.5em] [&_a]:underline [&_a]:underline-offset-2 will-animate"
-                  style={{ color: 'var(--foreground)', opacity: 0.8 }}
+                  style={{ color: 'var(--foreground)' }}
                   variants={fadeUp}
                   transition={textTransition}
                   dangerouslySetInnerHTML={{ __html: html }}

@@ -16,9 +16,9 @@
   --heading-color: #2c2418;
 
   /* Accent — warm gold is the ONLY color */
-  --accent: #996b1d;
+  --accent: #c4882a;
   --accent-secondary: #8a5f18;
-  --accent-rgb: 153, 107, 29;
+  --accent-rgb: 196, 136, 42;
 
   /* Cards & Glass */
   --card-bg: rgba(243, 237, 228, 0.8);
@@ -32,14 +32,14 @@
   --category-border: rgba(153, 107, 29, 0.2);
 
   /* Links */
-  --link-color: #996b1d;
+  --link-color: #2c2418;
 
   /* Blockquotes */
   --blockquote-border: #996b1d;
   --blockquote-text: #5a4f3f;
 
   /* Emphasis */
-  --em-color: #996b1d;
+  --em-color: #c4882a;
   --strong-color: #2c2418;
 
   /* Aurora mesh */
