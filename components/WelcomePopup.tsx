@@ -66,7 +66,7 @@ export default function WelcomePopup() {
               👋 Welcome to Katherine Marie!
             </h2>
             <p className="mb-6 text-sm" style={{ color: 'var(--muted-text)' }}>
-              This isn&apos;t just a blog — it&apos;s an adventure. Here are some things to try:
+              We hid some fun stuff in here. Poke around — you&apos;ll see what we mean:
             </p>
 
             <div className="space-y-4 mb-8">

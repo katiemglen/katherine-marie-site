@@ -20,11 +20,11 @@ const features = [
 ];
 
 const secrets = [
-  { emoji: '🐚🌵🦞', title: 'Hidden Emoji', desc: 'Look for small emoji hidden in the text of every blog post. Click them to discover fun facts about the places we visited. There are over 200 hidden across the site.' },
-  { emoji: '💬', title: 'Katie Says...', desc: 'Scroll through any post and you might get a little message from me. Think of it as me whispering over your shoulder while you read.' },
-  { emoji: '✨', title: 'Interactive Photos', desc: 'Hover over photos to see them come alive. Click any photo to see it full-screen.' },
-  { emoji: '🌙', title: 'Dark Mode', desc: 'Toggle the sun/moon icon to switch between Golden Hour and Forest themes.' },
-  { emoji: '📖', title: 'Story Mode', desc: 'Hit \'Read as Story\' on any post for an Instagram-style photo slideshow.' },
+  { emoji: '🐚🌵🦞', title: 'Hidden Emoji', desc: 'See a little emoji tucked into the text? Click it. There are over 200 of them hiding across the site, each with a fun fact about where we were.' },
+  { emoji: '💬', title: 'Katie Says...', desc: 'Keep scrolling and you might hear from me. Little notes pop up as you read — like I\'m sitting next to you telling you the parts I left out of the blog.' },
+  { emoji: '✨', title: 'Interactive Photos', desc: 'Hover over photos and they\'ll react. Click any photo to see it full-screen. Go ahead, get nosy with our pictures.' },
+  { emoji: '🌙', title: 'Dark Mode', desc: 'See the little sun/moon icon up top? Toggle it. The whole site transforms from Golden Hour to Forest at Twilight. It\'s kind of magical.' },
+  { emoji: '📖', title: 'Story Mode', desc: 'Hit "Read as Story" on any post and it turns into an Instagram-style slideshow. Perfect for when you want to just look at pictures (we won\'t judge).' },
 ];
 
 export default function WelcomePage() {
@@ -34,7 +34,7 @@ export default function WelcomePage() {
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/images/a-drive-through-a-giants-land/20170102_081704.jpg)' }}
+          style={{ backgroundImage: 'url(/images/tampas-chickens/20190415_173302.jpg)' }}
         />
         <div className="absolute inset-0 bg-black/50" />
         <motion.div
@@ -72,13 +72,16 @@ export default function WelcomePage() {
           </h2>
           <div className="space-y-4 text-base md:text-lg leading-relaxed" style={{ color: 'var(--foreground)' }}>
             <p>
-              Let&apos;s be honest — when Chad and I hit the road, our phones blew up. &ldquo;Are you alive?&rdquo; &ldquo;Where are you now?&rdquo; &ldquo;Did you eat today?&rdquo; We love you all, but we also love not answering the phone while standing on top of a mountain.
+              OK so here&apos;s the deal. When Chad and I hit the road in 2016, we learned something real fast: everyone we know and love has zero chill when it comes to our safety. Our phones were blowing up. Every. Single. Day. &ldquo;Are you alive?&rdquo; &ldquo;Where are you sleeping tonight?&rdquo; &ldquo;Katie, did you eat actual food or just gas station snacks again?&rdquo;
             </p>
             <p>
-              So we built this blog. Every photo, every story, every questionable food decision — it&apos;s all here. This way, you get to ride along with us without us having to pull over and call everyone back. Win-win.
+              And look — we get it. We love you for caring. But when you&apos;re standing on the edge of the Grand Canyon watching the sun go down, the last thing you want to do is answer 14 texts from family members who think you drove off a cliff because you didn&apos;t respond in 20 minutes.
+            </p>
+            <p>
+              So we made this. Every photo, every story, every questionable sleeping arrangement in a Cracker Barrel parking lot — all documented right here. You get to ride along with us. We get to actually enjoy the ride. Everybody wins.
             </p>
             <p style={{ color: 'var(--muted-text)' }}>
-              This started as a simple WordPress blog in 2016 for our first road trip. Now it&apos;s grown into something we&apos;re really proud of — a digital scrapbook of our adventures together.
+              What started as a simple WordPress blog we threw together before our first road trip has turned into something we&apos;re genuinely proud of. Two major trips. 73 blog posts. Over 2,600 photos. And now, a website we poured our hearts into rebuilding — because these memories deserve better than a basic template.
             </p>
           </div>
         </motion.div>
@@ -134,8 +137,8 @@ export default function WelcomePage() {
             <h2 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl mb-2" style={{ color: 'var(--heading-color)' }}>
               🔍 This Website Has Secrets
             </h2>
-            <p className="mb-8" style={{ color: 'var(--muted-text)' }}>
-              We hid surprises throughout the entire site. Here&apos;s what to look for:
+            <p className="mb-8" style={{ color: 'var(--foreground)' }}>
+              We had way too much fun building this. There are surprises hidden all over the place, and we want you to find them. Here&apos;s what you&apos;re looking for:
             </p>
             <div className="space-y-6">
               {secrets.map((s, i) => (
@@ -157,7 +160,7 @@ export default function WelcomePage() {
               ))}
             </div>
             <p className="mt-8 text-center text-lg" style={{ color: 'var(--accent)' }}>
-              Can you find all the hidden emoji? Happy exploring! 🗺️
+              Think you can find all 200+ hidden emoji? We dare you. 🗺️
             </p>
           </div>
         </motion.div>
@@ -174,8 +177,11 @@ export default function WelcomePage() {
           className="text-center"
         >
           <div className="glass rounded-3xl p-8 md:p-12">
+            <p className="text-base md:text-lg leading-relaxed mb-4" style={{ color: 'var(--foreground)' }}>
+              We&apos;re Katie &amp; Chad. We sleep in parking lots, argue about directions (he&apos;s always right and we don&apos;t talk about it), and believe the best memories come from saying &ldquo;let&apos;s just go&rdquo; and figuring it out on the way.
+            </p>
             <p className="text-base md:text-lg leading-relaxed mb-6" style={{ color: 'var(--foreground)' }}>
-              We&apos;re Katie &amp; Chad. We believe the best memories are made on the open road with bad coffee and good company. Thanks for being here. Thanks for caring enough to check in on us. And thanks for finally not calling.
+              Thank you for being here. Seriously. Thank you for caring about us enough to follow along, to check in, to read these stories. You being here means we get to relive these adventures every time someone new discovers them. And that&apos;s the whole point.
             </p>
             <p className="font-[family-name:var(--font-playfair)] text-xl md:text-2xl" style={{ color: 'var(--accent)' }}>
               With love &amp; adventure, Katherine Marie ✦
