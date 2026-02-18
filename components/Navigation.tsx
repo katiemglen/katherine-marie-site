@@ -225,7 +225,7 @@ export default function Navigation() {
         </div>
 
         {/* Desktop nav links */}
-        <nav className="hidden md:flex items-center justify-center pb-4 md:pb-6">
+        <nav className="hidden md:flex items-center justify-center pb-4 md:pb-6 relative">
           {NAV_LINKS.map((link, i) => (
             <span key={link.href} className="flex items-center">
               {i > 0 && (
@@ -249,10 +249,29 @@ export default function Navigation() {
               </Link>
             </span>
           ))}
+          <span className="mx-3 md:mx-4 text-[0.5em]" style={separatorStyle(isTransparent)}>✦</span>
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="cursor-pointer uppercase tracking-[0.25em] text-[11px] md:text-xs transition-colors flex items-center gap-1.5"
+            style={{
+              color: isTransparent ? 'rgba(255,255,255,0.8)' : 'var(--muted-text)',
+              textShadow: isTransparent ? '0 1px 4px rgba(0,0,0,0.4)' : 'none',
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.color = isTransparent ? '#ffffff' : 'var(--accent)';
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.color = isTransparent ? 'rgba(255,255,255,0.8)' : 'var(--muted-text)';
+            }}
+            aria-label="Search"
+          >
+            <SearchIcon />
+          </button>
         </nav>
       </header>
 
-      <MobileOverlay open={mobileOpen} onClose={() => setMobileOpen(false)} pathname={pathname} theme={theme} toggleTheme={toggleTheme} />
+      <MobileOverlay open={mobileOpen} onClose={() => setMobileOpen(false)} pathname={pathname} theme={theme} toggleTheme={toggleTheme} onSearchOpen={() => { setMobileOpen(false); setSearchOpen(true); }} />
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }
@@ -264,12 +283,14 @@ function MobileOverlay({
   pathname,
   theme,
   toggleTheme,
+  onSearchOpen,
 }: {
   open: boolean;
   onClose: () => void;
   pathname: string;
   theme: string;
   toggleTheme: () => void;
+  onSearchOpen?: () => void;
 }) {
   return (
     <AnimatePresence>
@@ -332,15 +353,25 @@ function MobileOverlay({
             ))}
           </nav>
 
-          {/* Theme toggle */}
-          <button
-            onClick={toggleTheme}
-            className="mt-12 flex items-center gap-3 text-sm uppercase tracking-[0.15em] cursor-pointer"
-            style={{ color: 'var(--muted-text)' }}
-          >
-            <ThemeIcon theme={theme} />
-            <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-          </button>
+          {/* Search + Theme toggle */}
+          <div className="mt-12 flex flex-col items-center gap-6">
+            <button
+              onClick={onSearchOpen}
+              className="flex items-center gap-3 text-sm uppercase tracking-[0.15em] cursor-pointer"
+              style={{ color: 'var(--muted-text)' }}
+            >
+              <SearchIcon />
+              <span>Search</span>
+            </button>
+            <button
+              onClick={toggleTheme}
+              className="flex items-center gap-3 text-sm uppercase tracking-[0.15em] cursor-pointer"
+              style={{ color: 'var(--muted-text)' }}
+            >
+              <ThemeIcon theme={theme} />
+              <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+            </button>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
