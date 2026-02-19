@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { r2Image } from '../lib/r2';
 
 /* ─── count-up hook ─── */
 function useCountUp(end: number, duration = 1.5, inView: boolean) {
@@ -68,53 +69,53 @@ const sleepingSpaces = [
 ];
 
 const tripMemories: { slug: string; title: string; hero: string }[] = [
-  { slug: "grandmas-house", title: "Off to Grandma's House We Go", hero: "/images/grandmas-house/20190401_141236-copy.jpg" },
-  { slug: "wandering-kansas-city", title: "Wandering Kansas City", hero: "/images/wandering-kansas-city/20190402_141550.jpg" },
-  { slug: "kc-coffee-conversations", title: "KC Coffee Conversations", hero: "/images/kc-coffee-conversations/20190403_095219.jpg" },
-  { slug: "bricktown-canals", title: "Bricktown Canals", hero: "/images/bricktown-canals/20190404_133630.jpg" },
-  { slug: "next-stop-dallas", title: "Next Stop, Dallas", hero: "/images/next-stop-dallas/20190405_195301.jpg" },
-  { slug: "lightening-dallas", title: "Lightening & Pouring Rain in Dallas", hero: "/images/lightening-dallas/20190406_114645.jpg" },
-  { slug: "scootering", title: "Scootering Through the Farmer's Market", hero: "/images/scootering/20190407_150117.jpg" },
-  { slug: "austin-texas-is-green", title: "Austin, Texas is Green?", hero: "/images/austin-texas-is-green/20190408_192039.jpg" },
-  { slug: "southern-friends-trees-coffee", title: "Southern Friends, Trees & Coffee", hero: "/images/southern-friends-trees-coffee/20190409_092546.jpg" },
-  { slug: "houston", title: "An Easy Day in Houston, TX", hero: "/images/houston/20190410_135411.jpg" },
-  { slug: "ferry-waves-southern-grub", title: "Ferry Waves & Southern Grub", hero: "/images/ferry-waves-southern-grub/20190411_190521.jpg" },
-  { slug: "new-orleans-wwii-museum", title: "New Orleans' WWII Museum", hero: "/images/new-orleans-wwii-museum/20190412_130441.jpg" },
-  { slug: "new-orleans-food-music", title: "New Orleans Food & Music", hero: "/images/new-orleans-food-music/20190413_105116.jpg" },
-  { slug: "panama-city-beach-fl", title: "Panama City Beach, FL", hero: "/images/panama-city-beach-fl/20190414_182729.jpg" },
-  { slug: "tampas-chickens", title: "Tampa's Chickens are Loose!", hero: "/images/tampas-chickens/20190415_173302.jpg" },
-  { slug: "hello-st-pete-showers", title: "Hello, St. Pete Showers!", hero: "/images/hello-st-pete-showers/20190416_144302.jpg" },
-  { slug: "sea-life-beach-towns-sunsets", title: "Sea Life, Beach Towns & Sunsets", hero: "/images/sea-life-beach-towns-sunsets/20190417_120645.jpg" },
-  { slug: "myakka-state-park-cats", title: "Myakka State Park & Cats", hero: "/images/myakka-state-park-cats/20190418_182416.jpg" },
-  { slug: "hello-coffee-hi-bonita-springs", title: "Hello Coffee, Hi Bonita Springs", hero: "/images/hello-coffee-hi-bonita-springs/20190419_171744.jpg" },
-  { slug: "florida-keys-day-trip", title: "Florida Keys Day Trip", hero: "/images/florida-keys-day-trip/20190420_172742.jpg" },
-  { slug: "easter-sunday", title: "Easter Sunday Beaches", hero: "/images/easter-sunday/20190421_182754.jpg" },
-  { slug: "st-augustine-beaches", title: "St. Augustine & Beaches", hero: "/images/st-augustine-beaches/20190422_095331.jpg" },
-  { slug: "welcome-to-savannah", title: "Welcome to Savannah", hero: "/images/welcome-to-savannah/20190423_111333.jpg" },
-  { slug: "charleston-landscaping", title: "Charleston Landscaping", hero: "/images/charleston-landscaping/20190424_125935.jpg" },
-  { slug: "shrimp-salad", title: "Shrimp Salad", hero: "/images/shrimp-salad/20190425_130737.jpg" },
-  { slug: "welcome-to-the-gilded-age", title: "Welcome to the Gilded Age", hero: "/images/welcome-to-the-gilded-age/20190426_131954-1.jpg" },
-  { slug: "blue-ridge", title: "Blue Ridge Mountain Zipline", hero: "/images/blue-ridge/20190427_135720.jpg" },
-  { slug: "civil-war", title: "Civil War & Waterfalls", hero: "/images/civil-war/20190428_130157.jpg" },
-  { slug: "national-mall", title: "National Mall Memorials", hero: "/images/national-mall/20190429_181048.jpg" },
-  { slug: "the-nations-front-lawn", title: "The Nation's Front Lawn", hero: "/images/the-nations-front-lawn/20190430_135913.jpg" },
-  { slug: "independence", title: "Philly Exploration", hero: "/images/independence/20190501_123232.jpg" },
-  { slug: "best-bagel-in-manhattan", title: "Best Bagel in Manhattan, New York", hero: "/images/best-bagel-in-manhattan/20190502_111038.jpg" },
-  { slug: "sunny-manhattan", title: "Afternoon in Sunny Manhattan", hero: "/images/sunny-manhattan/20190502_125427.jpg" },
-  { slug: "marthas-vineyard", title: "Martha's Vineyard", hero: "/images/marthas-vineyard/20190503_160521.jpg" },
-  { slug: "boston-tea-party", title: "Boston Tea Party & Pastries", hero: "/images/boston-tea-party/20190504_181224.jpg" },
-  { slug: "maine-lobster", title: "Maine Lobster & Seafood", hero: "/images/maine-lobster/20190505_130953.jpg" },
-  { slug: "maine-small-town", title: "Maine Small Town Comforts", hero: "/images/maine-small-town/20190506_090840.jpg" },
-  { slug: "hot-showers-in-acadia-national-park", title: "Hot Showers in Acadia National Park", hero: "/images/hot-showers-in-acadia-national-park/20190507_115618.jpg" },
-  { slug: "nova-scotia", title: "Nova Scotia Turning Point", hero: "/images/nova-scotia/20190508_200513.jpg" },
-  { slug: "peggys-cove", title: "Peggy's Cove, Nova Scotia", hero: "/images/peggys-cove/20190509_125233.jpg" },
-  { slug: "americas-first-mile", title: "America's First Mile", hero: "/images/americas-first-mile/20190510_092958.jpg" },
-  { slug: "old-city-of-quebec", title: "Old City of Quebec", hero: "/images/old-city-of-quebec/20190510_144914.jpg" },
-  { slug: "montreal-ottawa-day-trip", title: "Montreal & Ottawa Day Trip", hero: "/images/montreal-ottawa-day-trip/20190511_200619.jpg" },
-  { slug: "trial-errors-in-toronto", title: "Trial & Errors in Toronto", hero: "/images/trial-errors-in-toronto/20190512_164557.jpg" },
-  { slug: "rainy-niagara-falls", title: "Rainy Niagara Falls", hero: "/images/rainy-niagara-falls/20190513_113400.jpg" },
-  { slug: "chicago-has-great-hot-dogs", title: "Chicago Has GREAT Hot Dogs", hero: "/images/chicago-has-great-hot-dogs/20190514_083359.jpg" },
-  { slug: "vacation-at-home", title: "Vacation at Home", hero: "/images/vacation-at-home/20190516_124303.jpg" },
+  { slug: "grandmas-house", title: "Off to Grandma's House We Go", hero: r2Image("/images/grandmas-house/20190401_141236-copy.jpg") },
+  { slug: "wandering-kansas-city", title: "Wandering Kansas City", hero: r2Image("/images/wandering-kansas-city/20190402_141550.jpg") },
+  { slug: "kc-coffee-conversations", title: "KC Coffee Conversations", hero: r2Image("/images/kc-coffee-conversations/20190403_095219.jpg") },
+  { slug: "bricktown-canals", title: "Bricktown Canals", hero: r2Image("/images/bricktown-canals/20190404_133630.jpg") },
+  { slug: "next-stop-dallas", title: "Next Stop, Dallas", hero: r2Image("/images/next-stop-dallas/20190405_195301.jpg") },
+  { slug: "lightening-dallas", title: "Lightening & Pouring Rain in Dallas", hero: r2Image("/images/lightening-dallas/20190406_114645.jpg") },
+  { slug: "scootering", title: "Scootering Through the Farmer's Market", hero: r2Image("/images/scootering/20190407_150117.jpg") },
+  { slug: "austin-texas-is-green", title: "Austin, Texas is Green?", hero: r2Image("/images/austin-texas-is-green/20190408_192039.jpg") },
+  { slug: "southern-friends-trees-coffee", title: "Southern Friends, Trees & Coffee", hero: r2Image("/images/southern-friends-trees-coffee/20190409_092546.jpg") },
+  { slug: "houston", title: "An Easy Day in Houston, TX", hero: r2Image("/images/houston/20190410_135411.jpg") },
+  { slug: "ferry-waves-southern-grub", title: "Ferry Waves & Southern Grub", hero: r2Image("/images/ferry-waves-southern-grub/20190411_190521.jpg") },
+  { slug: "new-orleans-wwii-museum", title: "New Orleans' WWII Museum", hero: r2Image("/images/new-orleans-wwii-museum/20190412_130441.jpg") },
+  { slug: "new-orleans-food-music", title: "New Orleans Food & Music", hero: r2Image("/images/new-orleans-food-music/20190413_105116.jpg") },
+  { slug: "panama-city-beach-fl", title: "Panama City Beach, FL", hero: r2Image("/images/panama-city-beach-fl/20190414_182729.jpg") },
+  { slug: "tampas-chickens", title: "Tampa's Chickens are Loose!", hero: r2Image("/images/tampas-chickens/20190415_173302.jpg") },
+  { slug: "hello-st-pete-showers", title: "Hello, St. Pete Showers!", hero: r2Image("/images/hello-st-pete-showers/20190416_144302.jpg") },
+  { slug: "sea-life-beach-towns-sunsets", title: "Sea Life, Beach Towns & Sunsets", hero: r2Image("/images/sea-life-beach-towns-sunsets/20190417_120645.jpg") },
+  { slug: "myakka-state-park-cats", title: "Myakka State Park & Cats", hero: r2Image("/images/myakka-state-park-cats/20190418_182416.jpg") },
+  { slug: "hello-coffee-hi-bonita-springs", title: "Hello Coffee, Hi Bonita Springs", hero: r2Image("/images/hello-coffee-hi-bonita-springs/20190419_171744.jpg") },
+  { slug: "florida-keys-day-trip", title: "Florida Keys Day Trip", hero: r2Image("/images/florida-keys-day-trip/20190420_172742.jpg") },
+  { slug: "easter-sunday", title: "Easter Sunday Beaches", hero: r2Image("/images/easter-sunday/20190421_182754.jpg") },
+  { slug: "st-augustine-beaches", title: "St. Augustine & Beaches", hero: r2Image("/images/st-augustine-beaches/20190422_095331.jpg") },
+  { slug: "welcome-to-savannah", title: "Welcome to Savannah", hero: r2Image("/images/welcome-to-savannah/20190423_111333.jpg") },
+  { slug: "charleston-landscaping", title: "Charleston Landscaping", hero: r2Image("/images/charleston-landscaping/20190424_125935.jpg") },
+  { slug: "shrimp-salad", title: "Shrimp Salad", hero: r2Image("/images/shrimp-salad/20190425_130737.jpg") },
+  { slug: "welcome-to-the-gilded-age", title: "Welcome to the Gilded Age", hero: r2Image("/images/welcome-to-the-gilded-age/20190426_131954-1.jpg") },
+  { slug: "blue-ridge", title: "Blue Ridge Mountain Zipline", hero: r2Image("/images/blue-ridge/20190427_135720.jpg") },
+  { slug: "civil-war", title: "Civil War & Waterfalls", hero: r2Image("/images/civil-war/20190428_130157.jpg") },
+  { slug: "national-mall", title: "National Mall Memorials", hero: r2Image("/images/national-mall/20190429_181048.jpg") },
+  { slug: "the-nations-front-lawn", title: "The Nation's Front Lawn", hero: r2Image("/images/the-nations-front-lawn/20190430_135913.jpg") },
+  { slug: "independence", title: "Philly Exploration", hero: r2Image("/images/independence/20190501_123232.jpg") },
+  { slug: "best-bagel-in-manhattan", title: "Best Bagel in Manhattan, New York", hero: r2Image("/images/best-bagel-in-manhattan/20190502_111038.jpg") },
+  { slug: "sunny-manhattan", title: "Afternoon in Sunny Manhattan", hero: r2Image("/images/sunny-manhattan/20190502_125427.jpg") },
+  { slug: "marthas-vineyard", title: "Martha's Vineyard", hero: r2Image("/images/marthas-vineyard/20190503_160521.jpg") },
+  { slug: "boston-tea-party", title: "Boston Tea Party & Pastries", hero: r2Image("/images/boston-tea-party/20190504_181224.jpg") },
+  { slug: "maine-lobster", title: "Maine Lobster & Seafood", hero: r2Image("/images/maine-lobster/20190505_130953.jpg") },
+  { slug: "maine-small-town", title: "Maine Small Town Comforts", hero: r2Image("/images/maine-small-town/20190506_090840.jpg") },
+  { slug: "hot-showers-in-acadia-national-park", title: "Hot Showers in Acadia National Park", hero: r2Image("/images/hot-showers-in-acadia-national-park/20190507_115618.jpg") },
+  { slug: "nova-scotia", title: "Nova Scotia Turning Point", hero: r2Image("/images/nova-scotia/20190508_200513.jpg") },
+  { slug: "peggys-cove", title: "Peggy's Cove, Nova Scotia", hero: r2Image("/images/peggys-cove/20190509_125233.jpg") },
+  { slug: "americas-first-mile", title: "America's First Mile", hero: r2Image("/images/americas-first-mile/20190510_092958.jpg") },
+  { slug: "old-city-of-quebec", title: "Old City of Quebec", hero: r2Image("/images/old-city-of-quebec/20190510_144914.jpg") },
+  { slug: "montreal-ottawa-day-trip", title: "Montreal & Ottawa Day Trip", hero: r2Image("/images/montreal-ottawa-day-trip/20190511_200619.jpg") },
+  { slug: "trial-errors-in-toronto", title: "Trial & Errors in Toronto", hero: r2Image("/images/trial-errors-in-toronto/20190512_164557.jpg") },
+  { slug: "rainy-niagara-falls", title: "Rainy Niagara Falls", hero: r2Image("/images/rainy-niagara-falls/20190513_113400.jpg") },
+  { slug: "chicago-has-great-hot-dogs", title: "Chicago Has GREAT Hot Dogs", hero: r2Image("/images/chicago-has-great-hot-dogs/20190514_083359.jpg") },
+  { slug: "vacation-at-home", title: "Vacation at Home", hero: r2Image("/images/vacation-at-home/20190516_124303.jpg") },
 ];
 
 /* bento size classes — cycle through patterns */
@@ -135,7 +136,7 @@ export default function EastCoastTripStats() {
       {/* Hero Header */}
       <section className="relative overflow-hidden min-h-[60vh] flex items-center justify-center">
         <Image
-          src="/images/marthas-vineyard/20190503_160521.jpg"
+          src={r2Image("/images/marthas-vineyard/20190503_160521.jpg")}
           alt="East Coast Road Trip"
           fill
           className="object-cover"
@@ -163,7 +164,7 @@ export default function EastCoastTripStats() {
       {/* Infographic Image */}
       <section className="px-4 pb-12">
         <motion.div className="max-w-[800px] mx-auto" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }}>
-          <Image src="/images/2019-trip-stats/2019-road-trip.png" alt="2019 Road Trip Stats Infographic" width={800} height={1200} className="w-full h-auto rounded-2xl" style={{ border: "1px solid var(--glass-border)" }} priority />
+          <Image src={r2Image("/images/2019-trip-stats/2019-road-trip.png")} alt="2019 Road Trip Stats Infographic" width={800} height={1200} className="w-full h-auto rounded-2xl" style={{ border: "1px solid var(--glass-border)" }} priority />
         </motion.div>
       </section>
 

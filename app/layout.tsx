@@ -7,6 +7,7 @@ import Navigation from "@/components/Navigation";
 import ScrollToTop from "@/components/ScrollToTop";
 import CursorSparkle from "@/components/CursorSparkle";
 import WelcomePopup from "@/components/WelcomePopup";
+import { r2Image } from '../lib/r2';
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -58,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="flex flex-col items-center">
               <Link href="/">
                 <img
-                  src="/images/logo-rectangle.png"
+                  src={r2Image("/images/logo-rectangle.png")}
                   alt="Katherine Marie — Adventure Memories"
                   className="w-[216px] h-auto"
                   style={{ filter: 'var(--footer-logo-filter, none)' }}

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { r2Image } from '../lib/r2';
 
 interface HeroSlide {
   image: string;
@@ -59,7 +60,7 @@ export default function HomeHero({ slides }: HomeHeroProps) {
       {/* Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
         <motion.img
-          src="/images/logo-roadtrip.png"
+          src={r2Image("/images/logo-roadtrip.png")}
           alt="Katherine Marie"
           className="w-[288px] md:w-[360px] h-auto"
           style={{ filter: 'brightness(0) invert(1)' }}

@@ -1,12 +1,13 @@
 import { getTripBySlug, TRIPS, getPostsByCategory } from "@/lib/posts";
+import { r2Image } from "@/lib/r2";
 import PostCard from "@/components/PostCard";
 import { StaggerGrid } from "@/components/AnimatedLanding";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const TRIP_HEROES: Record<string, string> = {
-  'west-coast-2016': '/images/hiking-in-a-spiritual-place/20161225_161554.jpg',
-  'east-coast-2019': '/images/a-drive-through-a-giants-land/20170102_1154131.jpg',
+  'west-coast-2016': r2Image('/images/hiking-in-a-spiritual-place/20161225_161554.jpg'),
+  'east-coast-2019': r2Image('/images/a-drive-through-a-giants-land/20170102_1154131.jpg'),
 };
 
 const TRIP_STATS_SLUGS: Record<string, string> = {

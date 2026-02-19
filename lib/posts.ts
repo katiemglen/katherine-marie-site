@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { r2Image } from "./r2";
 
 export interface Post {
   id: string;
@@ -23,6 +24,10 @@ export function getAllPosts(): Post[] {
   if (!_posts) {
     const filePath = path.join(process.cwd(), "posts.json");
     _posts = (JSON.parse(fs.readFileSync(filePath, "utf-8")) as Post[]).filter((p) => p.slug);
+    // Transform image paths to R2 URLs
+    for (const p of _posts) {
+      p.images = p.images.map(r2Image);
+    }
     _posts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }
   return _posts;
