@@ -39,7 +39,17 @@ export default function HeroSection({ image, title, date, categories }: Props) {
         >
           <div className="flex gap-2 mb-3">
             {categories.map((c) => (
-              <span key={c} className="text-xs px-3 py-1 rounded-full" style={{ background: 'var(--category-bg)', color: 'var(--category-text)', border: '1px solid var(--category-border)' }}>
+              <span
+                key={c}
+                className="text-xs px-3 py-1 rounded-full"
+                style={{
+                  background: 'rgba(var(--accent-rgb), 0.15)',
+                  color: 'var(--category-text)',
+                  border: '1px solid rgba(var(--accent-rgb), 0.25)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                }}
+              >
                 {c}
               </span>
             ))}

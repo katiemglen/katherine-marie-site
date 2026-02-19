@@ -70,7 +70,8 @@ export default function Lightbox({ images, initialIndex, onClose }: LightboxProp
     <AnimatePresence>
       <motion.div
         ref={containerRef}
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95"
+        className="fixed inset-0 z-[100] flex items-center justify-center"
+        style={{ background: 'rgba(0, 0, 0, 0.88)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -82,24 +83,64 @@ export default function Lightbox({ images, initialIndex, onClose }: LightboxProp
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition text-2xl"
+          className="absolute top-4 right-4 z-10 w-11 h-11 flex items-center justify-center rounded-full text-white transition-all duration-300 text-2xl"
+          style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
+          }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.2)'; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.1)'; }}
           aria-label="Close"
         >
           ✕
         </button>
 
         {/* Counter */}
-        <div className="absolute top-4 left-4 text-white/60 text-sm">
+        <div
+          className="absolute top-4 left-4 text-white/70 text-sm px-3 py-1.5 rounded-full"
+          style={{
+            background: 'rgba(255, 255, 255, 0.08)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+          }}
+        >
           {index + 1} / {images.length}
         </div>
 
         {/* Nav arrows */}
         {images.length > 1 && (
           <>
-            <button onClick={prev} className="absolute left-2 md:left-4 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition text-xl" aria-label="Previous">
+            <button
+              onClick={prev}
+              className="absolute left-2 md:left-4 z-10 w-11 h-11 flex items-center justify-center rounded-full text-white transition-all duration-300 text-xl"
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.2)'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.1)'; }}
+              aria-label="Previous"
+            >
               ‹
             </button>
-            <button onClick={next} className="absolute right-2 md:right-4 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition text-xl" aria-label="Next">
+            <button
+              onClick={next}
+              className="absolute right-2 md:right-4 z-10 w-11 h-11 flex items-center justify-center rounded-full text-white transition-all duration-300 text-xl"
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.2)'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.1)'; }}
+              aria-label="Next"
+            >
               ›
             </button>
           </>

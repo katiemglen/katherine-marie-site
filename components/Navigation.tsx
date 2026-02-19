@@ -303,8 +303,10 @@ function MobileOverlay({
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-[80] flex flex-col items-center justify-center"
           style={{
-            background: 'color-mix(in srgb, var(--background) 98%, transparent)',
+            background: 'color-mix(in srgb, var(--background) 95%, transparent)',
             backgroundImage: 'radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--accent) 3%, transparent), transparent 70%)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
           }}
         >
           {/* Close */}

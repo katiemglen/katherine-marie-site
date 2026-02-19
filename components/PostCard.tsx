@@ -20,7 +20,7 @@ export default function PostCard({ title, slug, date, image }: Props) {
       variants={fadeUp}
       transition={landingTransition}
     >
-      <Link href={`/posts/${slug}`} className="block rounded-2xl overflow-hidden relative group aspect-[4/5]" style={{ border: '1px solid var(--card-border)' }}>
+      <Link href={`/posts/${slug}`} className="block rounded-2xl overflow-hidden relative group aspect-[4/5] transition-all duration-500" style={{ border: '1px solid var(--card-border)', boxShadow: '0 2px 12px rgba(0,0,0,0.08)' }} onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0,0,0,0.15)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; }} onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 12px rgba(0,0,0,0.08)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; }}>
         {image ? (
           <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
         ) : (
