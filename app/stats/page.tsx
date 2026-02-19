@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import { r2Image } from '../../lib/r2';
 
 export const metadata: Metadata = {
   title: "Trip Stats — Katherine Marie",
@@ -11,14 +10,14 @@ const TRIP_STATS = [
     slug: "2016-trip-stats",
     title: "2016 West Coast",
     subtitle: "December 17, 2016 – January 5, 2017",
-    image: r2Image("/images/hiking-in-a-spiritual-place/20161225_161554.jpg"),
+    image: "/images/hiking-in-a-spiritual-place/20161225_161554.jpg",
     stats: ["20 Days", "6,636 Miles", "13 States"],
   },
   {
     slug: "2019-trip-stats",
     title: "2019 East Coast",
     subtitle: "April 1 – May 15, 2019",
-    image: r2Image("/images/marthas-vineyard/20190503_160521.jpg"),
+    image: "/images/marthas-vineyard/20190503_160521.jpg",
     stats: ["45 Days", "9,281 Miles", "29 States"],
   },
 ];

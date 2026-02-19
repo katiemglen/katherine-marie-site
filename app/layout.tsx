@@ -7,14 +7,23 @@ import Navigation from "@/components/Navigation";
 import ScrollToTop from "@/components/ScrollToTop";
 import CursorSparkle from "@/components/CursorSparkle";
 import WelcomePopup from "@/components/WelcomePopup";
-import { r2Image } from '../lib/r2';
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://katherinemariecreative.com"),
   title: "Katherine Marie — Adventure Memories",
   description: "Travel stories from road trips across America",
+  openGraph: {
+    title: "Katherine Marie Creative",
+    description: "Travel stories from road trips across America",
+    type: "website",
+    images: ["/images/peggys-cove/20190509_125233.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 const FOOTER_LINKS = [
@@ -59,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="flex flex-col items-center">
               <Link href="/">
                 <img
-                  src={r2Image("/images/logo-rectangle.png")}
+                  src={"/images/logo-rectangle.png"}
                   alt="Katherine Marie — Adventure Memories"
                   className="w-[216px] h-auto"
                   style={{ filter: 'var(--footer-logo-filter, none)' }}

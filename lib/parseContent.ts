@@ -1,4 +1,3 @@
-import { r2Image } from './r2';
 
 export type GalleryLayout = 'masonry' | 'two-column-stagger' | 'single-full-bleed' | 'three-up' | 'bento';
 
@@ -62,7 +61,7 @@ export function parseWordPressContent(html: string, _images: string[]): ParsedCo
       const imgs: string[] = [];
       const re = /<img[^>]+src=["']([^"']+)["']/g;
       let m;
-      while ((m = re.exec(inner)) !== null) imgs.push(r2Image(m[1]));
+      while ((m = re.exec(inner)) !== null) imgs.push(m[1]);
       const idx = galleries.length;
       galleries.push({ images: imgs, layout: getLayout(imgs.length) });
       return `\n__GALLERY_${idx}__\n`;
@@ -179,13 +178,11 @@ export function parseWordPressContent(html: string, _images: string[]): ParsedCo
         return `<p>${content}</p>`;
       });
       
-      // Transform image src to R2 URLs and add breakout tier classes
+      // Add breakout tier classes to inline images
       html = html.replace(/<img([^>]*)>/g, (_match, attrs: string) => {
         const tierClass = tierPattern[inlineImageCount % tierPattern.length];
         inlineImageCount++;
-        // Rewrite src to R2
-        const newAttrs = attrs.replace(/src=["']([^"']+)["']/, (_m: string, url: string) => `src="${r2Image(url)}"`);
-        return `<img class="${tierClass}" data-content-image="true"${newAttrs}>`;
+        return `<img class="${tierClass}" data-content-image="true"${attrs}>`;
       });
       
       (pieces[i] as { type: 'html'; html: string }).html = html;

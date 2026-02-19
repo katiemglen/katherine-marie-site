@@ -1,9 +1,7 @@
 {
   "status": "complete",
-  "totalImages": 2566,
-  "batchesPushed": 2,
-  "totalPushedSoFar": 2566,
-  "remainingUntracked": 0,
-  "lastBatchDate": "2026-02-17T15:54:00-06:00",
-  "notes": "All 2566 image files committed and pushed to GitHub. Migration complete."
+  "totalImages": 2593,
+  "trackedFiles": 2594,
+  "completedAt": "2026-02-19T23:54:00Z",
+  "note": "All image files committed and pushed to GitHub"
 }

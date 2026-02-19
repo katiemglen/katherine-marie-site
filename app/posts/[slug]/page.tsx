@@ -11,7 +11,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  return { title: post?.title || "Post" };
+  const ogImage = post?.images?.[0] || "/images/peggys-cove/20190509_125233.jpg";
+  return {
+    title: post?.title || "Post",
+    openGraph: {
+      title: post?.title || "Post",
+      images: [ogImage],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+  };
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {

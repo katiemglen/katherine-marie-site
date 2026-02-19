@@ -4,7 +4,6 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { r2Image } from '../lib/r2';
 
 /* ─── count-up hook ─── */
 function useCountUp(end: number, duration = 1.5, inView: boolean) {
@@ -58,26 +57,26 @@ const funStats = [
 ];
 
 const tripMemories: { slug: string; title: string; hero: string }[] = [
-  { slug: "chad-is-stubborn", title: "What Do You Do When He Doesn't Get in the Car...", hero: r2Image("/images/chad-is-stubborn/img_4082.jpg") },
-  { slug: "lets-drive-all-of-the-miles", title: "Let's Drive ALL of the Miles", hero: r2Image("/images/lets-drive-all-of-the-miles/20161218_162913.jpg") },
-  { slug: "that-is-what-mountains-look-like", title: "It's Mountain Time", hero: r2Image("/images/that-is-what-mountains-look-like/20161219_145852.jpg") },
-  { slug: "mountain-slopes-snatchbacks-and-manual-driving", title: "Mountain Slopes, Snatchbacks and Manual Driving", hero: r2Image("/images/mountain-slopes-snatchbacks-and-manual-driving/20161220_125054.jpg") },
-  { slug: "do-people-actually-live-in-utah", title: "Do People Actually Live in Utah?", hero: r2Image("/images/do-people-actually-live-in-utah/20161221_095351.jpg") },
-  { slug: "it-does-rain-in-las-vegas", title: "It Does Rain in Las Vegas", hero: r2Image("/images/it-does-rain-in-las-vegas/20161222_124634.jpg") },
-  { slug: "attractions-that-could-have-been-done-at-home", title: "Attractions That Could Have Been Done at Home", hero: r2Image("/images/attractions-that-could-have-been-done-at-home/20161226_115359.jpg") },
-  { slug: "our-not-so-grand-trip-to-the-grand-canyon", title: "Our Not So Grand Trip to the Grand Canyon", hero: r2Image("/images/our-not-so-grand-trip-to-the-grand-canyon/20161224_160647.jpg") },
-  { slug: "hiking-in-a-spiritual-place", title: "Hiking in a Spiritual Place", hero: r2Image("/images/hiking-in-a-spiritual-place/20161225_164809.jpg") },
-  { slug: "car-campers-unite", title: "Car Campers Unite", hero: r2Image("/images/car-campers-unite/20161227_082939.jpg") },
-  { slug: "visiting-a-ghost-town", title: "Visiting a Ghost Town While Sneezing on Snatchbacks", hero: r2Image("/images/visiting-a-ghost-town/20161227_085557.jpg") },
-  { slug: "hiking-prepared-to-get-wet-in-the-dessert", title: "Hiking - Prepared to Get Wet in the Desert", hero: r2Image("/images/hiking-prepared-to-get-wet-in-the-dessert/20161228_163842.jpg") },
-  { slug: "rush-hour-truly-is-horrible", title: "Rush Hour Truly is Horrible", hero: r2Image("/images/rush-hour-truly-is-horrible/20161229_095121.jpg") },
-  { slug: "tips-for-staying-clean-on-a-road-trip", title: "Tips for Staying Clean on a Road Trip", hero: r2Image("/images/tips-for-staying-clean-on-a-road-trip/teeth.jpg") },
-  { slug: "saturday-is-not-chads-best-day", title: "Saturday is Not Chad's Best Day", hero: r2Image("/images/saturday-is-not-chads-best-day/20161230_122248.jpg") },
-  { slug: "not-a-typical-new-year-celebration", title: "Not a Typical New Year Celebration", hero: r2Image("/images/not-a-typical-new-year-celebration/20161231_154001.jpg") },
-  { slug: "san-fran-is-the-place-to-be", title: "San Fran is the Place To Be", hero: r2Image("/images/san-fran-is-the-place-to-be/20170101_140050.jpg") },
-  { slug: "a-drive-through-a-giants-land", title: "A Drive Through a Giant's Land", hero: r2Image("/images/a-drive-through-a-giants-land/20170102_103149.jpg") },
-  { slug: "trapped-on-a-mountain", title: "Trapped on a Mountain", hero: r2Image("/images/trapped-on-a-mountain/20170102_1326401.jpg") },
-  { slug: "1997-miles-to-go", title: "1,997 Miles To Go", hero: r2Image("/images/1997-miles-to-go/20170103_164033.jpg") },
+  { slug: "chad-is-stubborn", title: "What Do You Do When He Doesn't Get in the Car...", hero: "/images/chad-is-stubborn/img_4082.jpg" },
+  { slug: "lets-drive-all-of-the-miles", title: "Let's Drive ALL of the Miles", hero: "/images/lets-drive-all-of-the-miles/20161218_162913.jpg" },
+  { slug: "that-is-what-mountains-look-like", title: "It's Mountain Time", hero: "/images/that-is-what-mountains-look-like/20161219_145852.jpg" },
+  { slug: "mountain-slopes-snatchbacks-and-manual-driving", title: "Mountain Slopes, Snatchbacks and Manual Driving", hero: "/images/mountain-slopes-snatchbacks-and-manual-driving/20161220_125054.jpg" },
+  { slug: "do-people-actually-live-in-utah", title: "Do People Actually Live in Utah?", hero: "/images/do-people-actually-live-in-utah/20161221_095351.jpg" },
+  { slug: "it-does-rain-in-las-vegas", title: "It Does Rain in Las Vegas", hero: "/images/it-does-rain-in-las-vegas/20161222_124634.jpg" },
+  { slug: "attractions-that-could-have-been-done-at-home", title: "Attractions That Could Have Been Done at Home", hero: "/images/attractions-that-could-have-been-done-at-home/20161226_115359.jpg" },
+  { slug: "our-not-so-grand-trip-to-the-grand-canyon", title: "Our Not So Grand Trip to the Grand Canyon", hero: "/images/our-not-so-grand-trip-to-the-grand-canyon/20161224_160647.jpg" },
+  { slug: "hiking-in-a-spiritual-place", title: "Hiking in a Spiritual Place", hero: "/images/hiking-in-a-spiritual-place/20161225_164809.jpg" },
+  { slug: "car-campers-unite", title: "Car Campers Unite", hero: "/images/car-campers-unite/20161227_082939.jpg" },
+  { slug: "visiting-a-ghost-town", title: "Visiting a Ghost Town While Sneezing on Snatchbacks", hero: "/images/visiting-a-ghost-town/20161227_085557.jpg" },
+  { slug: "hiking-prepared-to-get-wet-in-the-dessert", title: "Hiking - Prepared to Get Wet in the Desert", hero: "/images/hiking-prepared-to-get-wet-in-the-dessert/20161228_163842.jpg" },
+  { slug: "rush-hour-truly-is-horrible", title: "Rush Hour Truly is Horrible", hero: "/images/rush-hour-truly-is-horrible/20161229_095121.jpg" },
+  { slug: "tips-for-staying-clean-on-a-road-trip", title: "Tips for Staying Clean on a Road Trip", hero: "/images/tips-for-staying-clean-on-a-road-trip/teeth.jpg" },
+  { slug: "saturday-is-not-chads-best-day", title: "Saturday is Not Chad's Best Day", hero: "/images/saturday-is-not-chads-best-day/20161230_122248.jpg" },
+  { slug: "not-a-typical-new-year-celebration", title: "Not a Typical New Year Celebration", hero: "/images/not-a-typical-new-year-celebration/20161231_154001.jpg" },
+  { slug: "san-fran-is-the-place-to-be", title: "San Fran is the Place To Be", hero: "/images/san-fran-is-the-place-to-be/20170101_140050.jpg" },
+  { slug: "a-drive-through-a-giants-land", title: "A Drive Through a Giant's Land", hero: "/images/a-drive-through-a-giants-land/20170102_103149.jpg" },
+  { slug: "trapped-on-a-mountain", title: "Trapped on a Mountain", hero: "/images/trapped-on-a-mountain/20170102_1326401.jpg" },
+  { slug: "1997-miles-to-go", title: "1,997 Miles To Go", hero: "/images/1997-miles-to-go/20170103_164033.jpg" },
 ];
 
 /* bento size classes — cycle through patterns */
@@ -96,7 +95,7 @@ export default function WestCoastTripStats() {
       {/* Hero Header */}
       <section className="relative overflow-hidden min-h-[60vh] flex items-center justify-center">
         <Image
-          src={r2Image("/images/that-is-what-mountains-look-like/20161219_145852.jpg")}
+          src={"/images/that-is-what-mountains-look-like/20161219_145852.jpg"}
           alt="West Coast Road Trip"
           fill
           className="object-cover"
