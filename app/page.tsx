@@ -1,5 +1,6 @@
 import { getAllPosts, TRIPS, getPostMood } from "@/lib/posts";
 import { wpImage, IMG_SIZES } from "@/lib/optimizeImage";
+import { r2Image } from "@/lib/r2";
 import HomeHero from "@/components/HomeHero";
 import TripSplitScreen from "@/components/TripSplitScreen";
 import FeaturedStory from "@/components/FeaturedStory";
@@ -14,13 +15,13 @@ export default function Home() {
 
   // Hero slides — image + linked post slug
   const heroSlides = [
-    { image: '/images/peggys-cove/20190509_125233.jpg', slug: 'peggys-cove' },
-    { image: '/images/not-a-typical-new-year-celebration/20161231_153440.jpg', slug: 'not-a-typical-new-year-celebration' },
-    { image: '/images/austin-texas-is-green/20190408_172125.jpg', slug: 'austin-texas-is-green' },
-    { image: '/images/old-city-of-quebec/20190510_170139.jpg', slug: 'old-city-of-quebec' },
-    { image: '/images/maine-lobster/20190505_120611.jpg', slug: 'maine-lobster' },
-    { image: '/images/maine-lobster/20190505_171247.jpg', slug: 'maine-lobster' },
-    { image: '/images/hot-showers-in-acadia-national-park/20190507_135232.jpg', slug: 'hot-showers-in-acadia-national-park' },
+    { image: r2Image('/images/peggys-cove/20190509_125233.jpg'), slug: 'peggys-cove' },
+    { image: r2Image('/images/not-a-typical-new-year-celebration/20161231_153440.jpg'), slug: 'not-a-typical-new-year-celebration' },
+    { image: r2Image('/images/austin-texas-is-green/20190408_172125.jpg'), slug: 'austin-texas-is-green' },
+    { image: r2Image('/images/old-city-of-quebec/20190510_170139.jpg'), slug: 'old-city-of-quebec' },
+    { image: r2Image('/images/maine-lobster/20190505_120611.jpg'), slug: 'maine-lobster' },
+    { image: r2Image('/images/maine-lobster/20190505_171247.jpg'), slug: 'maine-lobster' },
+    { image: r2Image('/images/hot-showers-in-acadia-national-park/20190507_135232.jpg'), slug: 'hot-showers-in-acadia-national-park' },
   ];
 
   // Trip panels
@@ -87,7 +88,7 @@ export default function Home() {
   }));
 
   // Closing CTA — open road shot from West Coast
-  const closingImage = '/images/a-drive-through-a-giants-land/20170102_081704.jpg';
+  const closingImage = r2Image('/images/a-drive-through-a-giants-land/20170102_081704.jpg');
 
   return (
     <div>

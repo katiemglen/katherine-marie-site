@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { r2Image } from '@/lib/r2';
 import { useTheme } from './ThemeProvider';
 import SearchOverlay, { useSearchShortcut } from './SearchOverlay';
 
@@ -118,7 +119,7 @@ export default function Navigation() {
           <Link href="/" className="shrink-0">
             <motion.img
               key="rect"
-              src={"/images/logo-rectangle.png"}
+              src={r2Image("/images/logo-rectangle.png")}
               alt="Katherine Marie"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -214,7 +215,7 @@ export default function Navigation() {
 
           <Link href="/">
             <img
-              src={"/images/logo-rectangle.png"}
+              src={r2Image("/images/logo-rectangle.png")}
               alt="Katherine Marie"
               className="h-[48px] md:h-[60px] w-auto"
               style={{
@@ -320,7 +321,7 @@ function MobileOverlay({
 
           {/* Logo */}
           <img
-            src={"/images/logo-roadtrip.png"}
+            src={r2Image("/images/logo-roadtrip.png")}
             alt="Katherine Marie"
             className="mb-10"
             style={{

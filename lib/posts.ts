@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { r2Image } from "./r2";
 
 export interface Post {
   id: string;
@@ -24,6 +25,9 @@ export function getAllPosts(): Post[] {
     const filePath = path.join(process.cwd(), "posts.json");
     _posts = (JSON.parse(fs.readFileSync(filePath, "utf-8")) as Post[]).filter((p) => p.slug);
     _posts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    for (const p of _posts) {
+      p.images = p.images.map(r2Image);
+    }
   }
   return _posts;
 }
@@ -54,7 +58,13 @@ export const TRIPS = [
 ];
 
 export function getTripBySlug(slug: string) {
-  return TRIPS.find((t) => t.slug === slug);
+  const trip = TRIPS.find((t) => t.slug === slug);
+  if (trip) return { ...trip, coverImage: r2Image(trip.coverImage) };
+  return undefined;
+}
+
+export function getTripsWithR2() {
+  return TRIPS.map((t) => ({ ...t, coverImage: r2Image(t.coverImage) }));
 }
 
 export function getPostMood(post: Pick<Post, 'title' | 'content'>): { emoji: string; label: string } {

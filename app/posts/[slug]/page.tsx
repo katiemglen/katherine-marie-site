@@ -12,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getPostBySlug(slug);
   const ogImage = post?.images?.[0] || "/images/peggys-cove/20190509_125233.jpg";
+  // images already transformed by r2Image in getAllPosts
   return {
     title: post?.title || "Post",
     openGraph: {

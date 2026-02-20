@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { r2Image } from '@/lib/r2';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -34,7 +35,7 @@ export default function WelcomePage() {
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${'/images/tampas-chickens/20190415_173302.jpg'})` }}
+          style={{ backgroundImage: `url(${r2Image('/images/tampas-chickens/20190415_173302.jpg')})` }}
         />
         <div className="absolute inset-0 bg-black/50" />
         <motion.div

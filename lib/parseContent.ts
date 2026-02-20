@@ -1,4 +1,6 @@
 
+import { r2Image } from "./r2";
+
 export type GalleryLayout = 'masonry' | 'two-column-stagger' | 'single-full-bleed' | 'three-up' | 'bento';
 
 export interface GalleryBlock {
@@ -63,7 +65,7 @@ export function parseWordPressContent(html: string, _images: string[]): ParsedCo
       let m;
       while ((m = re.exec(inner)) !== null) imgs.push(m[1]);
       const idx = galleries.length;
-      galleries.push({ images: imgs, layout: getLayout(imgs.length) });
+      galleries.push({ images: imgs.map(r2Image), layout: getLayout(imgs.length) });
       return `\n__GALLERY_${idx}__\n`;
     }
   );
@@ -178,6 +180,11 @@ export function parseWordPressContent(html: string, _images: string[]): ParsedCo
         return `<p>${content}</p>`;
       });
       
+      // Rewrite image src paths to R2
+      html = html.replace(/(<img[^>]+src=["'])([^"']+)(["'])/g, (_m, pre: string, src: string, post: string) => {
+        return pre + r2Image(src) + post;
+      });
+
       // Add breakout tier classes to inline images
       html = html.replace(/<img([^>]*)>/g, (_match, attrs: string) => {
         const tierClass = tierPattern[inlineImageCount % tierPattern.length];
