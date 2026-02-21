@@ -8,6 +8,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import CursorSparkle from "@/components/CursorSparkle";
 import WelcomePopup from "@/components/WelcomePopup";
 import { r2Image } from "@/lib/r2";
+import { Analytics } from "@vercel/analytics/next";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -97,6 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ScrollToTop />
           <CursorSparkle />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
