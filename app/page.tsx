@@ -7,6 +7,7 @@ import FeaturedStory from "@/components/FeaturedStory";
 import PhotoMosaic from "@/components/PhotoMosaic";
 import RecentStrip from "@/components/RecentStrip";
 import ClosingCTA from "@/components/ClosingCTA";
+import SubscribeSection from "@/components/SubscribeSection";
 import KatieQuotes from "@/components/KatieQuotes";
 import FloatingEmoji from "@/components/FloatingEmoji";
 
@@ -119,6 +120,7 @@ export default function Home() {
       <FloatingEmoji emoji={['🆕', '👀', '🌟']}>
         <RecentStrip posts={recent} />
       </FloatingEmoji>
+      <SubscribeSection />
       <FloatingEmoji emoji={['🛤️', '🌄', '✦']}>
         <ClosingCTA image={closingImage} />
       </FloatingEmoji>

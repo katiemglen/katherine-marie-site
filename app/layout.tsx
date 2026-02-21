@@ -7,6 +7,8 @@ import Navigation from "@/components/Navigation";
 import ScrollToTop from "@/components/ScrollToTop";
 import CursorSparkle from "@/components/CursorSparkle";
 import WelcomePopup from "@/components/WelcomePopup";
+import JourneyPopup from "@/components/JourneyPopup";
+import FollowBar from "@/components/FollowBar";
 import { r2Image } from "@/lib/r2";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
@@ -62,7 +64,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <Navigation />
           <WelcomePopup />
+          <JourneyPopup />
           <main className="min-h-screen">{children}</main>
+          <FollowBar />
           <footer className="relative py-12 md:py-16" style={{ color: 'var(--muted-text)' }}>
             <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'color-mix(in srgb, var(--accent) 8%, transparent)' }} />
             
